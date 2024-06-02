@@ -1,0 +1,36 @@
+[
+  {
+    "kind": "youtube#searchResult",
+    "etag": "8SfkEdbO8HtDd3FopXFnwukSXG0",
+    "id": {
+      "kind": "youtube#video",
+      "videoId": "vYS-pqVSMiI"
+    },
+    "snippet": {
+      "publishedAt": "2023-03-06T13:00:11Z",
+      "channelId": "UCQf9BYcqr8pzKrY14ZyMsbg",
+      "title": "GROUP BY  | MySQL Tutorial For Beginners | Full Database Course | pt.5",
+      "description": "In this video tutorial, we will be diving into the GROUP BY clause in MySQL. This is part five of our Full Database Course, ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/vYS-pqVSMiI/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/vYS-pqVSMiI/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/vYS-pqVSMiI/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Code With Prince",
+      "liveBroadcastContent": "none",
+      "publishTime": "2023-03-06T13:00:11Z"
+    }
+  }
+]
