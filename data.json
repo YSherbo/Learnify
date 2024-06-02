@@ -1,36 +1,36 @@
 [
   {
     "kind": "youtube#searchResult",
-    "etag": "8SfkEdbO8HtDd3FopXFnwukSXG0",
+    "etag": "AJ1bHK6L-1o2EQuH1z59oVldLQo",
     "id": {
       "kind": "youtube#video",
-      "videoId": "vYS-pqVSMiI"
+      "videoId": "iwRneX7GIGI"
     },
     "snippet": {
-      "publishedAt": "2023-03-06T13:00:11Z",
-      "channelId": "UCQf9BYcqr8pzKrY14ZyMsbg",
-      "title": "GROUP BY  | MySQL Tutorial For Beginners | Full Database Course | pt.5",
-      "description": "In this video tutorial, we will be diving into the GROUP BY clause in MySQL. This is part five of our Full Database Course, ...",
+      "publishedAt": "2023-04-15T22:20:24Z",
+      "channelId": "UCyFWoLmPTgZ3BkHIKMRSV1g",
+      "title": "Database Engineering Complete Course | DBMS Complete Course",
+      "description": "In this program, you'll learn: Core techniques and methods to structure and manage databases. Advanced techniques to write ...",
       "thumbnails": {
         "default": {
-          "url": "https://i.ytimg.com/vi/vYS-pqVSMiI/default.jpg",
+          "url": "https://i.ytimg.com/vi/iwRneX7GIGI/default.jpg",
           "width": 120,
           "height": 90
         },
         "medium": {
-          "url": "https://i.ytimg.com/vi/vYS-pqVSMiI/mqdefault.jpg",
+          "url": "https://i.ytimg.com/vi/iwRneX7GIGI/mqdefault.jpg",
           "width": 320,
           "height": 180
         },
         "high": {
-          "url": "https://i.ytimg.com/vi/vYS-pqVSMiI/hqdefault.jpg",
+          "url": "https://i.ytimg.com/vi/iwRneX7GIGI/hqdefault.jpg",
           "width": 480,
           "height": 360
         }
       },
-      "channelTitle": "Code With Prince",
+      "channelTitle": "Nerd's lesson",
       "liveBroadcastContent": "none",
-      "publishTime": "2023-03-06T13:00:11Z"
+      "publishTime": "2023-04-15T22:20:24Z"
     }
   }
 ]
