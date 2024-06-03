@@ -1,1 +1,1 @@
-Discuss the various approaches to data warehousing, emphasizing the advantages and disadvantages of each approach. How do you decide which approach is best suited to a particular organization's needs?
+Discuss the potential advantages and limitations of emerging advanced database technologies, such as distributed databases, NoSQL databases, and graph databases. How do these technologies compare to traditional relational databases, and what are the implications for data management and application development?
