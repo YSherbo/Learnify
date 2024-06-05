@@ -1,0 +1,36 @@
+[
+  {
+    "kind": "youtube#searchResult",
+    "etag": "_xY3Own8ThXUi-Dip9IElPDkkyM",
+    "id": {
+      "kind": "youtube#video",
+      "videoId": "e2oj-xgpiH0"
+    },
+    "snippet": {
+      "publishedAt": "2020-02-03T15:47:50Z",
+      "channelId": "UCCktnahuRFYIBtNnKT5IYyg",
+      "title": "How to Become a Database Administrator | Database Administrator Skills | Intellipaat",
+      "description": "Intellipaat Training courses: https://intellipaat.com/oracle-dba-training/ #howtobecomedatabaseadministrator ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/e2oj-xgpiH0/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/e2oj-xgpiH0/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/e2oj-xgpiH0/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Intellipaat",
+      "liveBroadcastContent": "none",
+      "publishTime": "2020-02-03T15:47:50Z"
+    }
+  }
+]

@@ -1,16 +1,54 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <title>
+            Hello
+        </title>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="User_Input" />
+            <button id="GET_Button">GET</button>
+            <button id="POST_Button">POST</button>
+        </form>
+        <script>
+            const GetBtn = document.getElementById("GET_Button")
+            const POSTBtn = document.getElementById("POST_Button")
+            const input = document.getElementById("User_Input")
 
-<head>
-    <title>
-        Learnify
-    </title>
-</head>
+            const baseURL = 'http://localhost:8080/info'
+            const baseURL2 = 'http://localhost:8080/'
 
-<body>
-    <h1>
-        Welcome To Learnify
-    </h1>
-    <p>don't edit on the code donkey</p>
-</body>
+            GetBtn.addEventListener('click', GetInfo)
 
+            POSTBtn.addEventListener('click', SendInfo)
+            
+            async function GetInfo(e) {
+                e.preventDefault()
+                const res = await fetch(baseURL, {
+                    method: 'GET'
+                })
+                console.log(res);
+                const data = await res.json()
+                const videos = JSON.parse(data)
+                console.log(videos[1])
+            }
+
+            async function SendInfo(e) {
+                e.preventDefault()
+                if(input.value == '') { return }
+                const res = await fetch(baseURL2, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": 'application/json'
+                    } ,
+                    body: JSON.stringify({
+                        parcel: input.value
+                    })
+
+                })
+            }
+
+        </script>
+    </body>
 </html>

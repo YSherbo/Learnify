@@ -2,17 +2,18 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
+app.use(express.static('public'));
+app.use(express.json());
 const AI = require("./Gemini_AI/AI");
 const Youtube_API = require("./Youtube_API/main");
-const path = require('path');
 
 //defining data
-var User_Input = "Databases";//What the user wants to learn
+var User_Input = "";//What the user wants to learn
 var AI_Request = "Give Me A Learning path to learn " + User_Input + " with numbered list, no bullet points, make the example below the heading and give one single example for what i should learn";//sends request to AI
 var filtered_AI_Response = [];//AI Response
 var Videos_Results = [];//Videos Generated
+var Videos_Results_Filter = [];//Videos Generated
 var filtered_AI_Question = [];//AI Questions
-const publicPath = path.join(__dirname, 'public');
 
 function filter_AI() {
 
@@ -41,8 +42,9 @@ function Video_Find(index) {
 
     matchingLines.forEach(matchingLine => {
       console.log(matchingLine);
-      Videos_Results[index] = matchingLine.substring(18, 29);
-      console.log(Videos_Results[index]);//putss the video id in the variable
+      Videos_Results[index] = fileContent.toString();
+      Videos_Results_Filter[index] = matchingLine.substring(18, 29);
+      console.log(Videos_Results_Filter[index]);//putss the video id in the variable
     });
 }
 
@@ -88,6 +90,23 @@ async function Generate() {
   await Generate_Questions();
 }
 
-app.use(express.static(publicPath));
+app.get('/info', (req, res) => {
+  async function GenerateHTML() {
+    await Generate()
+    const VideosJSON = JSON.stringify(Videos_Results)
+    res.status(200).json(VideosJSON)
+  }
+  GenerateHTML()
+})
 
+app.post('/', (req, res) => {
+  const { parcel } = req.body
+  User_Input = parcel
+  AI_Request = "Give Me A Learning path to learn " + User_Input + " with numbered list, no bullet points, make the example below the heading and give one single example for what i should learn";
+  console.log(parcel)
+  if(!parcel) {
+    return res.status(400).send({ info: 'err' })
+  }
+  
+})
 app.listen(8080);
