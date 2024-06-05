@@ -15,6 +15,17 @@
             const GetBtn = document.getElementById("GET_Button")
             const POSTBtn = document.getElementById("POST_Button")
             const input = document.getElementById("User_Input")
+            const VideosLink = [];
+            function create(htmlStr) {
+                var frag = document.createDocumentFragment(),
+                temp = document.createElement('div');
+                temp.innerHTML = htmlStr;
+                while (temp.firstChild) {
+                    frag.appendChild(temp.firstChild);
+                }
+                return frag;
+            }
+
 
             const baseURL = 'http://localhost:8080/info'
             const baseURL2 = 'http://localhost:8080/'
@@ -32,6 +43,10 @@
                 const data = await res.json()
                 const videos = JSON.parse(data)
                 console.log(videos[1])
+                for (let index = 1; index < videos.length; index++) {
+                    var fragment = create('<h1>Video No: ' + index + '</h1><br><iframe width="560" height="315" src="https://www.youtube.com/embed/' + videos[index] + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>');
+                    document.body.insertBefore(fragment, document.body.childNodes[0]);
+                }
             }
 
             async function SendInfo(e) {

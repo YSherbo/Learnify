@@ -53,7 +53,7 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    await Youtube_API.main(filtered_AI_Response[index] + "full Course");
+    await Youtube_API.main(filtered_AI_Response[index] + "full Course in english");
     Video_Find(index);
 
   }
@@ -93,7 +93,7 @@ async function Generate() {
 app.get('/info', (req, res) => {
   async function GenerateHTML() {
     await Generate()
-    const VideosJSON = JSON.stringify(Videos_Results)
+    const VideosJSON = JSON.stringify(Videos_Results_Filter)
     res.status(200).json(VideosJSON)
   }
   GenerateHTML()
