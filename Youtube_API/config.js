@@ -1,4 +1,4 @@
-const YOUTUBE_API_KEY = 'AIzaSyBB06eC3K9WrkGohBllpC1IXAGbC3k_Sb8';
+const YOUTUBE_API_KEY = 'AIzaSyBJgVbBA04_fQvQ5B9lJW396UrqeeFzJ98';
 
 module.exports = {
     YOUTUBE_API_KEY,

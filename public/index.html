@@ -1,69 +1,93 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Hello
-        </title>
+        <title>Learnify</title>
+        <meta 
+            name="Description"
+            content="Know how to learn anyting about tech with free resources and less effort">
+        <link rel="stylesheet" href="style.css">
+        <script></script>
     </head>
     <body>
-        <form>
-            <input type="text" id="User_Input" />
-            <button id="GET_Button">GET</button>
-            <button id="POST_Button">POST</button>
-        </form>
-        <script>
-            const GetBtn = document.getElementById("GET_Button")
-            const POSTBtn = document.getElementById("POST_Button")
-            const input = document.getElementById("User_Input")
-            const VideosLink = [];
-            function create(htmlStr) {
-                var frag = document.createDocumentFragment(),
-                temp = document.createElement('div');
-                temp.innerHTML = htmlStr;
-                while (temp.firstChild) {
-                    frag.appendChild(temp.firstChild);
-                }
-                return frag;
-            }
+        <div class="header">
+                <img 
+                src="Files/logo.png" 
+                alt="Logo image"
+                class="logo"
+                width="7%">
+            <!-- This is the logo image -->
+                <ul class="main-nav">
+                    <li>
+                        <a 
+                            class="Home" 
+                            title="Home" 
+                            href="index.html">
+                        Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a 
+                            class="Courses" 
+                            title="Courses" 
+                            href="Courses.html">
+                        Courses
+                        </a>
+                    </li>
+
+                      <li>
+                        <a 
+                            class="About" 
+                            title="About us" 
+                            href="About us.html">
+                        About us
+                        </a>
+                    </li>
+                </ul>
+        </div><br><br><br><br>
+
+        <center>
+            <div class="card2">
+                <img class="left" src="Files/Image.jpg" width="49%" height="100%">
+                <h1 class="center">
+                    Your AI Mentor <br>Is Here To Help
+                </h1>
+                <button>
+                    <a href="Courses.html">
+                        Try It For Free
+                    </a>
+                </button>
 
 
-            const baseURL = 'http://localhost:8080/info'
-            const baseURL2 = 'http://localhost:8080/'
+            </div><br>
+        </center><br>
+        <center>
+            <div class="card3">
+                <img src="Files/brain.png" width="17%" class="left">
+                <img src="Files/Target.png" width="17%" class="right">
+            </div>
+            <div class="card3">
+                <h2 class="left">Great Courses In Seconds!</h2>
+                <h2 class="right">Courses For Your Intrests</h2>
+            </div><br>
+            <div class="card3">
+                <h3 class="left">We Use The Power Of Artificial <br>Intellegence To Find Great Courses <br>From Various Sources For Free!</h3>
+                <h3 class="right">Whatever Field You Want To Learn, <br> Whatever Category, AI Can Do It For You</h3>
+            </div><br><br><br>
 
-            GetBtn.addEventListener('click', GetInfo)
+            <button>
+                <a href="Courses.html">
+                    Start Your Journey, Its Free!
+                </a>
+            </button>
 
-            POSTBtn.addEventListener('click', SendInfo)
-            
-            async function GetInfo(e) {
-                e.preventDefault()
-                const res = await fetch(baseURL, {
-                    method: 'GET'
-                })
-                console.log(res);
-                const data = await res.json()
-                const videos = JSON.parse(data)
-                console.log(videos[1])
-                for (let index = 1; index < videos.length; index++) {
-                    var fragment = create('<h1>Video No: ' + index + '</h1><br><iframe width="560" height="315" src="https://www.youtube.com/embed/' + videos[index] + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>');
-                    document.body.insertBefore(fragment, document.body.childNodes[0]);
-                }
-            }
 
-            async function SendInfo(e) {
-                e.preventDefault()
-                if(input.value == '') { return }
-                const res = await fetch(baseURL2, {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": 'application/json'
-                    } ,
-                    body: JSON.stringify({
-                        parcel: input.value
-                    })
 
-                })
-            }
+        </center><br><br><br>
 
-        </script>
+        <div class="footer">
+            <h1>2024 Learnify</h1>
+        </div>
+
     </body>
 </html>

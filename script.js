@@ -9,7 +9,7 @@ const Youtube_API = require("./Youtube_API/main");
 
 //defining data
 var User_Input = "";//What the user wants to learn
-var AI_Request = "Give Me A Learning path to learn " + User_Input + " with numbered list, no bullet points, make the example below the heading and give one single example for what i should learn";//sends request to AI
+var AI_Request = "Give Me A Learning path to learn " + User_Input + " with numbered list, no bullet points and give no examples";//sends request to AI
 var filtered_AI_Response = [];//AI Response
 var Videos_Results = [];//Videos Generated
 var Videos_Results_Filter = [];//Videos Generated
@@ -28,7 +28,7 @@ function filter_AI() {
 
     matchingLines.forEach(matchingLine => {
       console.log(matchingLine);
-      filtered_AI_Response[index] = matchingLine;//puts the filtered result in the variable
+      filtered_AI_Response[index] = matchingLine.substring(3);//puts the filtered result in the variable
     });
   }
 }
@@ -53,7 +53,7 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    await Youtube_API.main(filtered_AI_Response[index] + "full Course in english");
+    await Youtube_API.main(filtered_AI_Response[index] + " in " + User_Input + "Course in english");
     Video_Find(index);
 
   }

@@ -30,7 +30,7 @@ p {
 	box-sizing: border-box;
 }
 body {
-	font-family: bold, normal;
+	font-family: bold;
 	line-height: 1.6;
 	margin: 0;
 	min-height: 100vh;
@@ -40,34 +40,17 @@ ul {
   padding: 0;
   list-style: none;
 }
-
-* {
-	box-sizing: border-box;
-}
-body {
-	font-family: bold, normal;
-	line-height: 1.6;
-	margin: 0;
-	min-height: 100vh;
-}
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 
 h2,
 h3,
 a {
 	color: white;
+	font-family: bold;
 }
 
 a {
 	text-decoration: none;
 }
-
-
 
 .logo {
 	margin: 0;
@@ -100,8 +83,7 @@ a {
 .header {
 	padding-top: .5em;
 	padding-bottom: .5em;
-  background-color: rgba(0, 0, 0, 0.61);
-  backdrop-filter: blur(15px);
+    background-color: #011640;
 	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -142,3 +124,93 @@ a {
 	}
 
 }
+
+
+.card2 {
+	background-color: white;
+	border-radius: 50px;
+    width: 95%;	
+	display: inline-block;
+}
+
+.right {
+	float: right;
+	z-index: -10;
+	flex-basis: 50%;
+	overflow: hidden;
+  }
+  
+.left {
+	float: left;
+}
+  
+.center {
+	float: center;
+}
+
+img {
+	border-radius: 50px;
+}
+
+.card2 h1 {
+	font-size: 700%;
+}
+
+button {
+	border-radius: 50px;
+	border: #00000000;
+	font-family: bold;
+	font-size: 30px;
+	color: white;
+	padding: 15px 40px;
+	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+	background-color: #011640; 
+}
+  
+.card2 h2 {
+	font-size: 200%;
+	color: #001542;
+}
+
+.card3 {
+	background-color: white;
+	border-radius: 50px;
+    width: 60%;	
+	display: inline-block;
+}
+
+.card3 h2 {
+	font-size: 300%;
+	color: #001542;
+}
+
+.card3 h1 {
+	font-size: 120px;
+}
+
+.card3 h3 {
+	font-size: 170%;
+	color: #001542;
+}
+
+.footer {
+	background-color: #011640;
+	width: 100%;
+}
+
+.footer h1 {
+	color: white;
+	size: 200%;
+}
+
+input[type=text] {
+	border-radius: 50px;
+	border: #00000000;
+	font-family: bold;
+	font-size: 30px;
+	color: white;
+	padding: 15px 40px;
+	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+	background-color: #011640;
+}
+
