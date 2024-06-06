@@ -14,6 +14,7 @@ var filtered_AI_Response = [];//AI Response
 var Videos_Results = [];//Videos Generated
 var Videos_Results_Filter = [];//Videos Generated
 var filtered_AI_Question = [];//AI Questions
+const port = process.env.PORT || 4000;
 
 function filter_AI() {
 
@@ -109,4 +110,7 @@ app.post('/', (req, res) => {
   }
   
 })
-app.listen(8080);
+
+app.listen(port, () => {
+  console.log(`App Is Listening On Port` + port)
+})
