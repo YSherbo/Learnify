@@ -30,4 +30,4 @@ We're committed to continuously improving Learnify, and we value your input! If 
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the **APACHE 2.0 License**.
