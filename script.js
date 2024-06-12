@@ -61,34 +61,12 @@ async function Finder() {
 
 }
 
-async function Generate_Questions() {
-
-  for (let index = 0; index < filtered_AI_Response.length; index++) {
-    
-      await AI.run("Give Me a Question about " + filtered_AI_Response[index] + "and make it an open-ended question and dont give the answer and make sure the question ends with a question mark");
-
-      const fileContent = fs.readFileSync('./result.txt', 'utf8');
-      const lines = fileContent.split('\n');
-      const searchString = '?';
-      const matchingLines = lines.filter(line => line.includes(searchString));
-  
-      matchingLines.forEach(matchingLine => {
-        console.log(matchingLine);
-        filtered_AI_Question[index] = matchingLine;
-      });
-  }
-  
-  
-}
-
-
 async function Generate() {
 
   console.log("Waiting For AI..");
   await AI.run(AI_Request);
   await filter_AI();
   await Finder();
-  await Generate_Questions();
 }
 
 app.get('/info', (req, res) => {
