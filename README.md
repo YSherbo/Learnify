@@ -16,7 +16,7 @@
 
 ## Getting Started with Learnify
 
-1. **Visit the Learnify Website:** (link coming soon)
+1. **Visit the Learnify Website:** (link available)
 2. **Let the AI Work Its Magic:** Sit back and relax! Learnify will generate your personalized course outline within minutes.
 
 ## Learnify Code
