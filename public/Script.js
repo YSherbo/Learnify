@@ -22,7 +22,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['https://learnify2.netlify.app/info', 'https://learnify2.netlify.app/', 'https://learnify2.netlify.app/Question', 'https://learnify2.netlify.app/results', 'https://learnify2.netlify.app/answers']
+const URLs = ['https://learnify-wmbb.onrender.com/info', 'https://learnify-wmbb.onrender.com/', 'https://learnify-wmbb.onrender.com/Question', 'https://learnify-wmbb.onrender.com/results', 'https://learnify-wmbb.onrender.com/answers']
 
 GetBtn.addEventListener('click', GetInfo)
 POSTBtn.addEventListener('click', SendInfo)
