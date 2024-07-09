@@ -22,7 +22,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['http://localhost:4000/info', 'http://localhost:4000/', 'http://localhost:4000/Question', 'http://localhost:4000/results', 'http://localhost:4000/answers']
+const URLs = ['https://learnify2.netlify.app/info', 'https://learnify2.netlify.app/', 'https://learnify2.netlify.app/Question', 'https://learnify2.netlify.app/results', 'https://learnify2.netlify.app/answers']
 
 GetBtn.addEventListener('click', GetInfo)
 POSTBtn.addEventListener('click', SendInfo)
