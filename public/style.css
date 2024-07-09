@@ -17,12 +17,12 @@
 
 h1 {
     font-family: Bold;
-    color: #001542;
+    color: white;
 }
 
 p {
     font-family: Regular;
-    color: #001542;
+    color: white;
 
 }
 
@@ -87,9 +87,6 @@ a {
 	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 }
 
 
@@ -125,35 +122,27 @@ a {
 
 }
 
-
-.card2 {
-	background-color: white;
+input[type=text] {
 	border-radius: 50px;
-    width: 95%;	
-	display: inline-block;
+	border: #00000000;
+	font-family: bold;
+	font-size: 200%;
+	color: white;
+	padding: 15px 40px;
+	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+	background-color: #011640;
 }
 
-.right {
-	float: right;
-	z-index: -10;
-	flex-basis: 50%;
-	overflow: hidden;
-  }
-  
-.left {
-	float: left;
-}
-  
-.center {
-	float: center;
-}
-
-img {
-	border-radius: 50px;
-}
-
-.card2 h1 {
-	font-size: 700%;
+.background-image {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 button {
@@ -161,56 +150,42 @@ button {
 	border: #00000000;
 	font-family: bold;
 	font-size: 30px;
-	color: white;
-	padding: 15px 40px;
-	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
-	background-color: #011640; 
-}
-  
-.card2 h2 {
-	font-size: 200%;
-	color: #001542;
-}
-
-.card3 {
-	background-color: white;
-	border-radius: 50px;
-    width: 60%;	
-	display: inline-block;
-}
-
-.card3 h2 {
-	font-size: 300%;
-	color: #001542;
-}
-
-.card3 h1 {
-	font-size: 120px;
-}
-
-.card3 h3 {
-	font-size: 170%;
-	color: #001542;
-}
-
-.footer {
-	background-color: #011640;
-	width: 100%;
-}
-
-.footer h1 {
-	color: white;
-	size: 200%;
-}
-
-input[type=text] {
-	border-radius: 50px;
-	border: #00000000;
-	font-family: bold;
-	font-size: 30px;
-	color: white;
-	padding: 15px 40px;
+	padding: 15px;
 	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 	background-color: #011640;
+	color: white; 
 }
 
+.bigText {
+	font-size: 700%;
+}
+h2 {
+	color: white;
+}
+
+.card {
+	width: 90%;
+	padding: 15px;
+	background-color: #011640;
+	border-radius: 20px;
+}
+
+.card2 {
+	width: 90%;
+	padding: 15px;
+	background-color: #011640;
+	border-radius: 20px;
+	background-color: rgba(0, 0, 0, 0.61);
+	backdrop-filter: blur(15px);
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);  
+}
+
+img {
+	border-radius: 20px;
+}
+
+body {
+	background-color: black;
+}

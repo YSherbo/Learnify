@@ -44,11 +44,12 @@
                         </a>
                     </li>
                 </ul>
-        </div><br><br><br><br>
+        </div>
 
         <center>
-            <div class="card2">
-                <h1 class="center">
+            <img class="background-image" src="./Files/Background.jpg">
+
+                <h1 class="bigText">
                     Your AI Mentor Is Here To Help
                 </h1>
                 <form id="generateForm">
@@ -60,68 +61,13 @@
                     Type What You Want To Learn (eg Databases, Web Development)
                     Click Generate First Then Click Get Course
                 </h2>
+
+                <div class="card" id="results">
+                </div>
         
-            </div><br>
+            </center>
 
-            <script>
-                const GetBtn = document.getElementById("GET_Button")
-                const POSTBtn = document.getElementById("POST_Button")
-                const input = document.getElementById("User_Input")
-                const form = document.getElementById("generateForm")
-                const VideosLink = [];
-                function create(htmlStr) {
-                    var frag = document.createDocumentFragment(),
-                    temp = document.createElement('div');
-                    temp.innerHTML = htmlStr;
-                    while (temp.firstChild) {
-                        frag.appendChild(temp.firstChild);
-                    }
-                    return frag;
-                }
-    
-    
-                const baseURL = 'https://learnify-wmbb.onrender.com/info'
-                const baseURL2 = 'https://learnify-wmbb.onrender.com/'
-    
-                GetBtn.addEventListener('click', GetInfo)
-    
-                POSTBtn.addEventListener('click', SendInfo)
-                
-                async function GetInfo(e) {
-                    e.preventDefault()
-                    var fragment2 = create('<center><h1>Generating Your Course...</h1></center>');
-                    document.body.insertBefore(fragment2, document.body.childNodes[0]);
-
-                    const res = await fetch(baseURL, {
-                        method: 'GET'
-                    })
-                    console.log(res);
-                    const data = await res.json()
-                    const videos = JSON.parse(data)
-                    console.log(videos[1])
-                    for (let index = 1; index < videos.length; index++) {
-                        var fragment = create('<center><h1>Video No: ' + index + '</h1><br><iframe width="560" height="315" src="https://www.youtube.com/embed/' + videos[index] + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br></center>');
-                        document.body.insertBefore(fragment, document.body.childNodes[0]);
-                    }
-                }
-    
-                async function SendInfo(e) {
-                    e.preventDefault()
-                    if(input.value == '') { return }
-                    const res = await fetch(baseURL2, {
-                        method: 'POST',
-                        headers: {
-                            "Content-Type": 'application/json'
-                        } ,
-                        body: JSON.stringify({
-                            parcel: input.value
-                        })
-    
-                    })
-                    
-
-                }
-    
+            <script src="Script.js">    
             </script>
     
 
