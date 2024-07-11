@@ -10,7 +10,7 @@ const { Console } = require('console');
 
 //defining data
 var User_Input = "";//What the user wants to learn
-var AI_Request = "Can you give me a proper roadmap to learn " + User_Input + "and please add no context and make it on a numbered list and give only one example and put it on the same line";//Request Sent To The AI Model
+var AI_Request = "Can you give me a proper step by step part by part little by little roadmap to learn " + User_Input + " and please add no context and make it on a numbered list and give only one example and put it on the same line";//Request Sent To The AI Model
 var filtered_AI_Response = [];//AI Response
 var Videos_Results = [];//Videos Generated
 var Videos_Results_Filter = [];//Videos Generated
@@ -129,7 +129,7 @@ app.post('/results', (req, res) => {
 app.post('/', (req, res) => {
   const { parcel } = req.body
   User_Input = parcel
-  AI_Request = "Can you give me a proper roadmap to learn " + User_Input + "and please add no context and make it on a numbered list and give only one example and put it on the same line";
+  AI_Request = "Can you give me a proper step by step part by part little by little roadmap to learn " + User_Input + " and please add no context and make it on a numbered list and give only one example and put it on the same line";
   console.log(parcel)
   if(!parcel) {
     return res.status(400).send({ info: 'err' })
