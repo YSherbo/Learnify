@@ -58,7 +58,7 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    await AI.run("can you give me a good search keyword to search on youtube if i want to learn " + filtered_AI_Response[index] + " in " + User_Input + " course and with no context and make it one keyword and allow spaces")
+    await AI.run("can you give me a good search keyword to search on youtube if i want to learn " + filtered_AI_Response[index] + " in " + User_Input + " and with no context and make it one keyword and allow spaces and full course")
     keywords[index] = fs.readFileSync('./result.txt', 'utf8').toString()
 
     await Youtube_API.main(keywords[index]);
