@@ -175,6 +175,13 @@ async function SendInfo(e) {
         })
 
     })
+
+    function closeWindow() {
+        div.remove();
+        div = document.createElement('div');
+        div.id = 'results';
+        div.class = 'card';
+    }
     
 
 }
