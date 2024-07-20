@@ -22,14 +22,6 @@ async function run(question) {
         category: AI.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
         threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
       },
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
-      },
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_UNSPECIFIED,
-        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
-      },
     ],
   });
 
