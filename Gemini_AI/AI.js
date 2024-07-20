@@ -25,7 +25,7 @@ const safetySetting = [
 ];
 
 async function run(question) {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySetting });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safetySetting });
 
   const result = await model.generateContent(question);
   const response = await result.response;
