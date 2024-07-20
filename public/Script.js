@@ -22,7 +22,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['https://learnify-wmbb.onrender.com/info', 'https://learnify-wmbb.onrender.com/', 'https://learnify-wmbb.onrender.com/Question', 'https://learnify-wmbb.onrender.com/results', 'https://learnify-wmbb.onrender.com/answers']
+const URLs = ['https://learnify-production.up.railway.app/info', 'https://learnify-production.up.railway.app/', 'https://learnify-production.up.railway.app/Question', 'https://learnify-production.up.railway.app/results', 'https://learnify-production.up.railway.app/answers']
 
 GetBtn.addEventListener('click', GetInfo)
 POSTBtn.addEventListener('click', SendInfo)
