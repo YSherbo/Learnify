@@ -12,23 +12,23 @@ async function run(question) {
     safetySettings: [
       {
         category: AI.HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
       },
       {
         category: AI.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
       },
       {
         category: AI.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
       },
       {
         category: AI.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
       },
       {
         category: AI.HarmCategory.HARM_CATEGORY_UNSPECIFIED,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+        threshold: AI.HarmBlockThreshold.BLOCK_ONLY_HIGH,
       },
     ],
   });
