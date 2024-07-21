@@ -178,9 +178,9 @@ async function SendInfo(e) {
 
     function closeWindow() {
         div.remove();
-        div = document.createElement('div');
-        div.id = 'results';
-        div.class = 'card';
+        const div2 = document.createElement('div');
+        div2.id = 'results';
+        div2.className = 'card';
     }
     
 
