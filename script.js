@@ -20,6 +20,11 @@ var answers = [];//Answers Generated
 var CheckAnswers = []; //answers checked
 const port = process.env.PORT || 4000;
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 function filter_AI() {
 
   console.log("started");
@@ -58,6 +63,7 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
+    await delay(500);
     await AI.run("can you give me a good search keyword to search on youtube if i want to learn " + filtered_AI_Response[index] + " in " + User_Input + " and with no context and make it one keyword and allow spaces and full course")
     keywords[index] = fs.readFileSync('./result.txt', 'utf8').toString()
 
@@ -70,6 +76,7 @@ async function Finder() {
 
 async function GenerateQuestion() {
   for (let index = 0; index < Videos_Results_Filter.length; index++) {
+        await delay(500);
         await AI.run("can You Generate Me An Open Question about the topic " + keywords[index] + " but output only the question no context just the question")
         Questions[index] = await fs.readFileSync('./result.txt', 'utf8').toString()
         console.log(Questions[index])//puts the question in the variable
@@ -114,6 +121,7 @@ app.post('/results', (req, res) => {
   async function CheckAnswersF() {
     answers = parcel
     for (let index = 0; index < Questions.length; index++) {
+      await delay(500);
       await AI.run("Was " + answers[index] + " the Correct Answer for the question " + Questions[index] + "? and output only true or false and without any context")
       CheckAnswers[index] = fs.readFileSync('./result.txt', 'utf8').toString()
     }
