@@ -1,0 +1,16 @@
+{
+    "name": "Learnify",
+    "short_name": "Learnify",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#011640",
+    "theme_color": "#011640",
+    "icons": [
+      {
+        "src": "Files/IOS-icon.jpg",
+        "sizes": "1024x1024",
+        "type": "image/jpg"
+      }
+    ]
+  }
+  

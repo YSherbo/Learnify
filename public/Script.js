@@ -22,13 +22,14 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['https://learnify-production.up.railway.app/info', 'https://learnify-production.up.railway.app/', 'https://learnify-production.up.railway.app/Question', 'https://learnify-production.up.railway.app/results', 'https://learnify-production.up.railway.app/answers']
+const URLs = ['learnify-production.up.railway.app/info', 'learnify-production.up.railway.app/', 'learnify-production.up.railway.app/Question', 'learnify-production.up.railway.app/results', 'learnify-production.up.railway.app/answers']
 
-GetBtn.addEventListener('click', GetInfo)
-POSTBtn.addEventListener('click', SendInfo)
-
-async function GetInfo(e) {
-    e.preventDefault()
+GetBtn.addEventListener('click', async function(event) {
+    event.preventDefault();
+    await SendInfo(event);
+    await GetInfo(event);
+});
+async function GetInfo() {
     const generating = document.createElement('h1')
     generating.innerHTML = 'Sit Back While We Generate Your Course...'
     div.appendChild(generating)
@@ -82,6 +83,7 @@ async function GetQuestions(e) {
 
     const QuestionsJSON = await res.json()
     const Questions = JSON.parse(QuestionsJSON)
+    generating.remove()
     console.log(Questions[1])
 
     const QuestionElement = []
@@ -104,16 +106,19 @@ async function GetQuestions(e) {
     const submitBtn = document.createElement('button')
     submitBtn.innerHTML = 'Submit'
     div.appendChild(submitBtn)
-    submitBtn.addEventListener('click', SubmitInfo)
+    submitBtn.addEventListener('click', async function(event) {
+        event.preventDefault();
+        await SubmitInfo(event);
+        await GetAnswers(event);
+    });
 }
 
-async function SubmitInfo(e) {
-    e.preventDefault()
+async function SubmitInfo() {
     const values = []
     for (let index = 1; index < input2.length; index++) {
         values[index] = input2[index].value;        
     }
-    const res = await fetch(URLs[3], {
+    const res = fetch(URLs[3], {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json'
@@ -123,15 +128,9 @@ async function SubmitInfo(e) {
         })
 
     })
-
-    const GetAnswer = document.createElement('button')
-    GetAnswer.innerHTML = 'Get Answers'
-    div.appendChild(GetAnswer)
-    GetAnswer.addEventListener('click', GetAnswers)
 }
 
-async function GetAnswers(e) {
-    e.preventDefault()
+async function GetAnswers() {
     const generating = document.createElement('h1')
     generating.innerHTML = 'Getting Answers...'
     div.appendChild(generating)
@@ -162,10 +161,9 @@ async function GetAnswers(e) {
 }
 
 
-async function SendInfo(e) {
-    e.preventDefault()
+async function SendInfo() {
     if(input.value == '') { return }
-    const res = await fetch(URLs[1], {
+    const res = fetch(URLs[1], {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json'
@@ -176,12 +174,12 @@ async function SendInfo(e) {
 
     })
 
-    function closeWindow() {
-        div.remove();
-        const div2 = document.createElement('div');
-        div2.id = 'results';
-        div2.className = 'card';
-    }
-    
-
 }
+
+function closeWindow() {
+    div.remove();
+    div = document.createElement('div');
+    div.id = 'results';
+    div.className = 'card';
+}
+
