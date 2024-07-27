@@ -22,7 +22,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['learnify-production.up.railway.app/info', 'learnify-production.up.railway.app/', 'learnify-production.up.railway.app/Question', 'learnify-production.up.railway.app/results', 'learnify-production.up.railway.app/answers']
+const URLs = ['https://learnify-production.up.railway.app/info', 'https://learnify-production.up.railway.app/', 'https://learnify-production.up.railway.app/Question', 'https://learnify-production.up.railway.app/results', 'https://learnify-production.up.railway.app/answers']
 
 GetBtn.addEventListener('click', async function(event) {
     event.preventDefault();
