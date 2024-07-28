@@ -22,7 +22,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['https://learnify-production.up.railway.app/info', 'https://learnify-production.up.railway.app/', 'https://learnify-production.up.railway.app/Question', 'https://learnify-production.up.railway.app/results', 'https://learnify-production.up.railway.app/answers']
+const URLs = ['https://learnify-production.up.railway.app/info', 'https://learnify-production.up.railway.app/', 'https://learnify-production.up.railway.app/Question', 'https://learnify-production.up.railway.app/results', 'https://learnify-production.up.railway.app/answers', 'https://learnify-production.up.railway.app/Exp']
 
 GetBtn.addEventListener('click', async function(event) {
     event.preventDefault();
@@ -42,6 +42,14 @@ async function GetInfo() {
     const videos = JSON.parse(data)
     console.log(videos[1])
     generating.remove()
+
+    const EXPBTN = document.createElement('button')
+    EXPBTN.innerHTML = 'Genarate Detailed Text Explanation'
+    div.appendChild(EXPBTN)
+
+    EXPBTN.addEventListener('click', GetEXP)
+
+    
     for (let index = 1; index < videos.length; index++) {
         fragmentText[index] = document.createElement('h1')
         fragmentText[index].innerHTML = 'Video No: ' + index
@@ -176,10 +184,50 @@ async function SendInfo() {
 
 }
 
+async function GetEXP(e) {
+    e.preventDefault()
+    const generating = document.createElement('h1')
+    generating.innerHTML = 'Generating Detailed Explainaition...'
+    div.appendChild(generating)
+
+    const res = await fetch(URLs[5], {
+        method: 'GET'
+    })
+
+    const EXPJSON = await res.json()
+    const Exp = JSON.parse(EXPJSON)
+    generating.remove()
+    console.log(Exp[1])
+
+    const ExpElement = []
+
+    for (let index = 1; index < Exp.length; index++) {
+        ExpElement[index] = document.createElement('h1')
+        ExpElement[index].innerHTML = 'Lesson No: ' + index + '\n' + Exp[index]
+        div.appendChild(ExpElement[index])
+
+        const br = document.createElement('br')
+        div.appendChild(br)
+    }
+}
+
 function closeWindow() {
     div.remove();
-    div = document.createElement('div');
-    div.id = 'results';
-    div.className = 'card';
+    // Create a new div element
+    let div2 = document.createElement('div');
+
+    // Add a class to the div
+    div2.classList.add('card');
+
+    // Optionally, add the div to the document body
+    document.body.appendChild(div2);
+
+    const clr = document.createElement('button');
+
+    clr.innerHTML = 'Clear'
+
+    clr.onclick = closeWindow()
+
+    div2.appendChild(clr);
 }
 

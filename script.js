@@ -18,6 +18,7 @@ var Questions = [];//Questions Generated
 var keywords = [];//Keywords Generated
 var answers = [];//Answers Generated
 var CheckAnswers = []; //answers checked
+var explanation = [];//Explanaitions Generated
 const port = process.env.PORT || 4000;
 
 function delay(ms) {
@@ -83,6 +84,15 @@ async function GenerateQuestion() {
   }
 }
 
+async function GenerateExplanation() {
+  for (let index = 0; index < keywords.length; index++) {
+      await delay(500)
+      await AI.run("can you teach me everything about" + keywords[index] + " in " + User_Input + " but with no context give only the explanation and make the explanation detailed enough for a beginner to understand ")
+      explanation[index] = await fs.readFileSync('./result.txt', 'utf8').replace(/\r?\n/g, '\\n').replace(/\\n/g, '\n').toString();
+      console.log(explanation[index])//puts the explanation in the variable
+  }
+}
+
 
 async function Generate() {
 
@@ -109,6 +119,16 @@ app.get('/Question', (req, res) => {
   }
   GenerateQuestionHTML()
 })
+
+app.get('/Exp', (req, res) => {
+  async function GenerateExpHTML() {
+    await GenerateExplanation()
+    const EXPJSON = JSON.stringify(explanation)
+    res.status(200).json(EXPJSON)
+  }
+  GenerateExpHTML()
+})
+
 
 app.get('/answers', (req, res) => {
     res.status(200).json(JSON.stringify(CheckAnswers))
