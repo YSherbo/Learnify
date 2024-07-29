@@ -211,23 +211,11 @@ async function GetEXP(e) {
     }
 }
 
-function closeWindow() {
-    div.remove();
-    // Create a new div element
-    let div2 = document.createElement('div');
-
-    // Add a class to the div
-    div2.classList.add('card');
-
-    // Optionally, add the div to the document body
-    document.body.appendChild(div2);
-
-    const clr = document.createElement('button');
-
-    clr.innerHTML = 'Clear'
-
-    clr.onclick = closeWindow()
-
-    div2.appendChild(clr);
+function closeWindow(e) {
+    e.preventDefault()
+    div.innerHTML = ''
+    const clearbtn = document.createElement('button')
+    clearbtn.innerHTML = 'Clear'
+    clearbtn.addEventListener('click', closeWindow)
 }
 
