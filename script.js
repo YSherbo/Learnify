@@ -20,11 +20,19 @@ var answers = [];//Answers Generated
 var CheckAnswers = []; //answers checked
 var explanation = [];//Explanaitions Generated
 const port = process.env.PORT || 4000;
+var Delayed = true;
+var timeout = ["The Server Is Busy, Please Wait One Minute Then Try Again", "Error Code: AI_TIMEOUT"];
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function AIDelay()
+{
+  Delayed = false;
+  await delay(60000);
+  Delayed = true;
+}
 
 function filter_AI() {
 
@@ -64,7 +72,6 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    await delay(500);
     await AI.run("can you give me a good search keyword to search on youtube if i want to learn " + filtered_AI_Response[index] + " in " + User_Input + " and with no context and make it one keyword and allow spaces and full course")
     keywords[index] = fs.readFileSync('./result.txt', 'utf8').toString()
 
@@ -77,7 +84,6 @@ async function Finder() {
 
 async function GenerateQuestion() {
   for (let index = 0; index < Videos_Results_Filter.length; index++) {
-        await delay(500);
         await AI.run("can You Generate Me An Open Question about the topic " + keywords[index] + " but output only the question no context just the question")
         Questions[index] = await fs.readFileSync('./result.txt', 'utf8').toString()
         console.log(Questions[index])//puts the question in the variable
@@ -86,7 +92,6 @@ async function GenerateQuestion() {
 
 async function GenerateExplanation() {
   for (let index = 0; index < keywords.length; index++) {
-      await delay(500)
       await AI.run("can you teach me everything about" + keywords[index] + " in " + User_Input + " but with no context give only the explanation and make the explanation detailed enough for a beginner to understand ")
       explanation[index] = await fs.readFileSync('./result.txt', 'utf8').replace(/\r?\n/g, '\\n').replace(/\\n/g, '\n').toString();
       console.log(explanation[index])//puts the explanation in the variable
@@ -104,27 +109,56 @@ async function Generate() {
 
 app.get('/info', (req, res) => {
   async function GenerateHTML() {
-    await Generate()
-    const VideosJSON = await JSON.stringify(Videos_Results_Filter)
-    res.status(200).json(VideosJSON)
+    if (Delayed) {
+
+      await Generate()
+      const VideosJSON = await JSON.stringify(Videos_Results_Filter)
+      res.status(200).json(VideosJSON)
+      AIDelay()
+    }
+    else {
+
+      const timeoutJSON = await JSON.stringify(timeout)
+      res.status(200).json(timeoutJSON)
+    }
   }
   GenerateHTML()
 })
 
 app.get('/Question', (req, res) => {
   async function GenerateQuestionHTML() {
-    await GenerateQuestion()
-    const QuestionsJSON = JSON.stringify(Questions)
-    res.status(200).json(QuestionsJSON)
+
+    if (Delayed) {
+
+      await GenerateQuestion()
+      const QuestionsJSON = JSON.stringify(Questions)
+      res.status(200).json(QuestionsJSON)
+      AIDelay()
+    }
+    else {
+
+      const timeoutJSON = await JSON.stringify(timeout)
+      res.status(200).json(timeoutJSON)
+    }
+    
   }
   GenerateQuestionHTML()
 })
 
 app.get('/Exp', (req, res) => {
   async function GenerateExpHTML() {
-    await GenerateExplanation()
-    const EXPJSON = JSON.stringify(explanation)
-    res.status(200).json(EXPJSON)
+
+    if (Delayed) {
+      await GenerateExplanation()
+      const EXPJSON = JSON.stringify(explanation)
+      res.status(200).json(EXPJSON)
+      AIDelay()
+    }
+    else {
+
+      const timeoutJSON = await JSON.stringify(timeout)
+      res.status(200).json(timeoutJSON)
+    }
   }
   GenerateExpHTML()
 })
@@ -140,10 +174,13 @@ app.post('/results', (req, res) => {
   const { parcel } = req.body
   async function CheckAnswersF() {
     answers = parcel
-    for (let index = 0; index < Questions.length; index++) {
-      await delay(500);
-      await AI.run("Was " + answers[index] + " the Correct Answer for the question " + Questions[index] + "? and output only true or false and without any context")
-      CheckAnswers[index] = fs.readFileSync('./result.txt', 'utf8').toString()
+    
+    if (Delayed) {
+      for (let index = 0; index < Questions.length; index++) {
+      
+        await AI.run("Was " + answers[index] + " the Correct Answer for the question " + Questions[index] + "? and output only true or false and without any context")
+        CheckAnswers[index] = fs.readFileSync('./result.txt', 'utf8').toString()
+      }
     }
   }
 

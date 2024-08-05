@@ -211,11 +211,11 @@ async function GetEXP(e) {
     }
 }
 
-function closeWindow(e) {
-    e.preventDefault()
-    div.innerHTML = ''
+function closeWindow() {
+    div.textContent = ""
     const clearbtn = document.createElement('button')
     clearbtn.innerHTML = 'Clear'
+    div.appendChild(clearbtn)
     clearbtn.addEventListener('click', closeWindow)
 }
 
