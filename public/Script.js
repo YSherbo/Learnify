@@ -51,26 +51,35 @@ async function GetInfo() {
 
     
     for (let index = 1; index < videos.length; index++) {
-        fragmentText[index] = document.createElement('h1')
-        fragmentText[index].innerHTML = 'Video No: ' + index
-        div.appendChild(fragmentText[index])
+        if (videos[1] == "The Server Is Busy, Please Wait One Minute Then Try Again") {
 
-        const br = document.createElement('br')
-        div.appendChild(br)
+            fragmentText[index] = document.createElement('h1')
+            fragmentText[index].innerHTML = videos[index]
+            div.appendChild(fragmentText[index])
+        }
+        else {
+
+            fragmentText[index] = document.createElement('h1')
+            fragmentText[index].innerHTML = 'Video No: ' + index
+            div.appendChild(fragmentText[index])
+
+            const br = document.createElement('br')
+            div.appendChild(br)
         
-        fragment[index] = document.createElement('iframe')
-        fragment[index].src = 'https://www.youtube.com/embed/' + videos[index]
-        fragment[index].width = 560
-        fragment[index].height = 315
-        fragment[index].title = 'YouTube video player'
-        fragment[index].frameBorder = 0
-        fragment[index].allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-        fragment[index].referrerPolicy ='strict-origin-when-cross-origin'
-        fragment[index].allowFullscreen = true
-        div.appendChild(fragment[index])
+            fragment[index] = document.createElement('iframe')
+            fragment[index].src = 'https://www.youtube.com/embed/' + videos[index]
+            fragment[index].width = 560
+            fragment[index].height = 315
+            fragment[index].title = 'YouTube video player'
+            fragment[index].frameBorder = 0
+            fragment[index].allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            fragment[index].referrerPolicy ='strict-origin-when-cross-origin'
+            fragment[index].allowFullscreen = true
+            div.appendChild(fragment[index])
 
-        const br2 = document.createElement('br')
-        div.appendChild(br2)
+            const br2 = document.createElement('br')
+            div.appendChild(br2)
+        }
 
     }
     const QuizBTN = document.createElement('button')
@@ -97,17 +106,26 @@ async function GetQuestions(e) {
     const QuestionElement = []
 
     for (let index = 1; index < Questions.length; index++) {
-        QuestionElement[index] = document.createElement('h1')
-        QuestionElement[index].innerHTML = 'Question No: ' + index + '\n' + Questions[index]
-        div.appendChild(QuestionElement[index])
+        if (Questions[index] == "The Server Is Busy, Please Wait One Minute Then Try Again") {
 
-        const br = document.createElement('br')
-        div.appendChild(br)
+            QuestionElement[index] = document.createElement('h1')
+            QuestionElement[index].innerHTML = Questions[index]
+            div.appendChild(QuestionElement[index])
+        }
+        else {
 
-        input2[index] = document.createElement('input')
-        input2[index].type = 'text'
-        input2[index].placeholder = 'Enter Your Answer Here'
-        div.appendChild(input2[index])
+            QuestionElement[index] = document.createElement('h1')
+            QuestionElement[index].innerHTML = 'Question No: ' + index + '\n' + Questions[index]
+            div.appendChild(QuestionElement[index])
+
+            const br = document.createElement('br')
+            div.appendChild(br)
+
+            input2[index] = document.createElement('input')
+            input2[index].type = 'text'
+            input2[index].placeholder = 'Enter Your Answer Here'
+            div.appendChild(input2[index])
+        }
     }
 
 
@@ -202,12 +220,21 @@ async function GetEXP(e) {
     const ExpElement = []
 
     for (let index = 1; index < Exp.length; index++) {
-        ExpElement[index] = document.createElement('h1')
-        ExpElement[index].innerHTML = 'Lesson No: ' + index + '\n' + Exp[index]
-        div.appendChild(ExpElement[index])
+        if (Exp[index] == "The Server Is Busy, Please Wait One Minute Then Try Again") {
+            
+            ExpElement[index] = document.createElement('h1')
+            ExpElement[index].innerHTML = Exp[index]
+            div.appendChild(ExpElement[index])
+        }
+        else {
 
-        const br = document.createElement('br')
-        div.appendChild(br)
+            ExpElement[index] = document.createElement('h1')
+            ExpElement[index].innerHTML = 'Lesson No: ' + index + '\n' + Exp[index]
+            div.appendChild(ExpElement[index])
+
+            const br = document.createElement('br')
+            div.appendChild(br)
+        }
     }
 }
 
