@@ -223,7 +223,7 @@ async function GetEXP(e) {
         if (Exp[index] == "The Server Is Busy, Please Wait One Minute Then Try Again") {
             
             ExpElement[index] = document.createElement('h1')
-            ExpElement[index].innerHTML = Exp[index]
+            ExpElement[index].innerHTML = Exp[index].split('\n').join('\n')
             div.appendChild(ExpElement[index])
         }
         else {
