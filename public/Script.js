@@ -229,7 +229,7 @@ async function GetEXP(e) {
         else {
 
             ExpElement[index] = document.createElement('h1')
-            ExpElement[index].innerHTML = 'Lesson No: ' + index + '\n' + Exp[index].split('\n').join('\n')
+            ExpElement[index].innerHTML = 'Lesson No: ' + index + '\n' + Exp[index].replace(/%/g, "\n")
             div.appendChild(ExpElement[index])
 
             const br = document.createElement('br')
