@@ -46,6 +46,7 @@ h3,
 a {
 	color: white;
 	font-family: bold;
+	transition: transform 250ms; 
 }
 
 a {
@@ -72,10 +73,12 @@ a {
 .main-nav a {
 	color: white;
 	font-size: .99em;
+	transition: transform 250ms; 
 }
 
 .main-nav a:hover {
 	color: #718daa;
+	transform: translateY(-4px);
 }
 
 
@@ -153,7 +156,13 @@ button {
 	padding: 15px;
 	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 	background-color: #011640;
-	color: white; 
+	color: white;
+	transition: 250ms; 
+}
+button:hover {
+	transform: scale(1.1);
+	background-color: white;
+	color: #011640;
 }
 
 .bigText {
@@ -188,4 +197,45 @@ img {
 
 body {
 	background-color: black;
+}
+
+#loading {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	background-color: #011640;
+	z-index: 99;
+	display: flex;
+    justify-content: center;
+    align-items: center; 
+	transition: 0.5s;
+    opacity: 1;    
+}
+#loading.faded-out {
+	opacity: 0;
+}
+
+#loading-image {
+	max-width: 100%;
+	height: auto;
+	animation: breathing;
+	animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+
+@keyframes breathing {
+	0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+	
 }

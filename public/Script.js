@@ -1,3 +1,14 @@
+
+$(window).on('load', function () {
+    setTimeout(removeLoader, 2000);
+  }) 
+
+  function removeLoader(){
+    $( "#loading" ).fadeOut(1000, function() {
+      $( "#loading" ).remove();
+  });  
+}
+
 const GetBtn = document.getElementById("GET_Button")
 const POSTBtn = document.getElementById("POST_Button")
 const input = document.getElementById("User_Input")
