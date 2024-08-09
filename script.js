@@ -92,7 +92,7 @@ async function GenerateQuestion() {
 
 async function GenerateExplanation() {
   for (let index = 0; index < keywords.length; index++) {
-      await AI.run("can you teach me everything about" + keywords[index] + " in " + User_Input + " but with no context give only the explanation and make the explanation detailed enough for a beginner to understand ")
+      await AI.run("can you teach me everything from zero to hero course about" + keywords[index] + " in " + User_Input + " with table of contents but with no context give only the explanation and make the explanation extremely detailed")
       explanation[index] = await fs.readFileSync('./result.txt', 'utf8').split('\n').join('\n').replace(/\n/g, "%");
       console.log(explanation[index])//puts the explanation in the variable
   }
