@@ -5,13 +5,17 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 const AI = require("./Gemini_AI/AI");
+const Youtube_API = require("./Youtube_API/main");
+const { Console } = require('console');
 
 //defining data
 var User_Input = "";//What the user wants to learn
 var AI_Request = "Can you give me a proper step by step part by part little by little roadmap to learn " + User_Input + " and please add no context and make it on a numbered list and give only one example and put it on the same line and with no headers and recommend one thing and choice based steps provide one path and give only the example (like instead of learn JavaScript just say javascript for example)";//Request Sent To The AI Model
 var filtered_AI_Response = [];//AI Response
+var Videos_Results = [];//Videos Generated
 var Videos_Results_Filter = [];//Videos Generated
 var Questions = [];//Questions Generated
+var keywords = [];//Keywords Generated
 var answers = [];//Answers Generated
 var CheckAnswers = []; //answers checked
 var explanation = [];//Explanaitions Generated
@@ -48,27 +52,46 @@ function filter_AI() {
   }
 }
 
+function Video_Find(index) {
+
+    const fileContent = fs.readFileSync('./data.json', 'utf8');//gets the video id
+    const lines = fileContent.split('\n');//strips down the result for the needs of the application
+    const searchString = 'videoId';
+    const matchingLines = lines.filter(line => line.includes(searchString));
+
+    matchingLines.forEach(matchingLine => {
+      console.log(matchingLine);
+      Videos_Results[index] = fileContent.toString();
+      Videos_Results_Filter[index] = matchingLine.substring(18, 29);
+      console.log(Videos_Results_Filter[index]);//putss the video id in the variable
+    });
+}
+
 async function Finder() {
 
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    await AI.run("give me a valid working youtube video id for a recommended YouTube video that teaches " + filtered_AI_Response[index] + " for beginners and give no context and no notes ")
-    Videos_Results_Filter[index] = fs.readFileSync('./result.txt', 'utf8').toString()
+    await AI.run("can you give me a perfect search keyword to search on youtube if i want to learn " + filtered_AI_Response[index] + " and with no context and make it one keyword and allow spaces")
+    keywords[index] = fs.readFileSync('./result.txt', 'utf8').toString()
+
+    await Youtube_API.main(keywords[index]);
+    Video_Find(index);
+
   }
 
 }
 
 async function GenerateQuestion() {
   for (let index = 0; index < Videos_Results_Filter.length; index++) {
-        await AI.run("can You Generate Me An Open Question about the topic " + filtered_AI_Response[index] + " but output only the question no context just the question")
+        await AI.run("can You Generate Me An Open Question about the topic " + keywords[index] + " but output only the question no context just the question")
         Questions[index] = await fs.readFileSync('./result.txt', 'utf8').toString()
         console.log(Questions[index])//puts the question in the variable
   }
 }
 
 async function GenerateExplanation() {
-  for (let index = 0; index < filtered_AI_Response.length; index++) {
+  for (let index = 0; index < keywords.length; index++) {
       await AI.run("can you give me a detailed explanation that teaches " + filtered_AI_Response[index] + " for beginners and make sure that it is extremely detailed")
       explanation[index] = await fs.readFileSync('./result.txt', 'utf8').split('\n').join('\n').replace(/\n/g, "%");
       console.log(explanation[index])//puts the explanation in the variable
