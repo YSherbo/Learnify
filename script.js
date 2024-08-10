@@ -38,18 +38,19 @@ function filter_AI() {
 
   console.log("started");
 
-  for (let index = 1; index < 50; index++) {
+  for (let index = 0; index < 50; index++) {
 
     const fileContent = fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
-    const lines = fileContent.split('\n');//strips down the result for the needs of the application
-    const searchString = `${index}..`;
-    const matchingLines = lines.filter(line => line.includes(searchString));
+    filtered_AI_Response = fileContent.split('\n')
+    filtered_AI_Response[index] = filtered_AI_Response[index].substring(3)
 
-    matchingLines.forEach(matchingLine => {
-      console.log(matchingLine);
-      filtered_AI_Response[index] = matchingLine.substring(3);//puts the filtered result in the variable
-    });
+    
+    console.log(filtered_AI_Response[index])
+
+
   }
+  
+  filtered_AI_Response.unshift("")
 }
 
 function Video_Find(index) {
