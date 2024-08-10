@@ -38,16 +38,14 @@ function filter_AI() {
 
   console.log("started");
 
-  for (let index = 0; index < 50; index++) {
+  const fileContent = fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
+  filtered_AI_Response = fileContent.split('\n')
+    
+  for (let index = 0; index < 14; index++) {
 
-    const fileContent = fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
-    filtered_AI_Response = fileContent.split('\n')
     filtered_AI_Response[index] = filtered_AI_Response[index].substring(3)
 
-    
     console.log(filtered_AI_Response[index])
-
-
   }
   
   filtered_AI_Response.unshift("")
