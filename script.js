@@ -10,7 +10,7 @@ const { Console } = require('console');
 
 //defining data
 var User_Input = "";//What the user wants to learn
-var AI_Request = "Can you give me a proper step by step part by part little by little roadmap to learn " + User_Input + " and please add no context and make it on a numbered list and give only one example and put it on the same line and with no headers and recommend one thing and choice based steps provide one path and give only the example (like instead of learn JavaScript just say javascript for example)";//Request Sent To The AI Model
+var AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All and no explanation and give one recommendation (like when giving step just say noSql: Django for example)";//Request Sent To The AI Model
 var filtered_AI_Response = [];//AI Response
 var Videos_Results = [];//Videos Generated
 var Videos_Results_Filter = [];//Videos Generated
@@ -194,7 +194,7 @@ app.post('/results', (req, res) => {
 app.post('/', (req, res) => {
   const { parcel } = req.body
   User_Input = parcel
-  AI_Request = "Can you give me a proper step by step part by part little by little roadmap to learn " + User_Input + " and please add no context and make it on a numbered list and give only one example and put it on the same line and with no headers and recommend one thing and choice based steps provide one path and give only the example (like instead of learn JavaScript just say javascript for example)";
+  AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All and no explanation and give one recommendation (like when giving step just say noSql: Django for example)";
   console.log(parcel)
   if(!parcel) {
     return res.status(400).send({ info: 'err' })
