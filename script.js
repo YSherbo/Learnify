@@ -42,7 +42,7 @@ function filter_AI() {
 
     const fileContent = fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
     const lines = fileContent.split('\n');//strips down the result for the needs of the application
-    const searchString = `${index}. ` + '.';
+    const searchString = `${index}..`;
     const matchingLines = lines.filter(line => line.includes(searchString));
 
     matchingLines.forEach(matchingLine => {
