@@ -1,13 +1,18 @@
 
-$(window).on('load', function () {
-    setTimeout(removeLoader, 2000);
-  }) 
+(function($) { 
 
-  function removeLoader(){
-    $( "#loading" ).fadeOut(1000, function() {
-      $( "#loading" ).remove();
-  });  
-}
+    $(window).on('load', function () {
+        setTimeout(removeLoader, 2000);
+    }) 
+
+    function removeLoader(){
+        $( "#loading" ).fadeOut(1000, function() {
+        $( "#loading" ).remove();
+    });  
+    }
+    
+}) (jQuery);
+
 
 const GetBtn = document.getElementById("GET_Button")
 const POSTBtn = document.getElementById("POST_Button")
