@@ -34,12 +34,12 @@ async function AIDelay()
   Delayed = true;
 }
 
-function filter_AI() {
+async function filter_AI() {
 
   console.log("started");
 
-  const fileContent = fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
-  filtered_AI_Response = fileContent.split('\n')
+  const fileContent = await fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
+  filtered_AI_Response = await fileContent.split('\n')
     
   for (let index = 0; index < 14; index++) {
 
