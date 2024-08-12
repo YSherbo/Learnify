@@ -10,7 +10,7 @@ const { Console } = require('console');
 
 //defining data
 var User_Input = "";//What the user wants to learn
-var AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All (like instead of saying networking : Learn the basics of TCP/IP and network protocol just say networking for example )and no explanation and if steps have a tool, Programing language, software..etc (like exploitation need a tool like metasploit), give one recommendation (like when giving step just say Django instead of NoSql : Django for example or Vulnerabilities and Exploits : metasploit just say metasploit ) and the output must not have bold text or headers and make sure the steps doesn’t exceed 13 steps and with no certification or exam or competitions or programs ( no CEH Exem ...etc) and no sections (no FUNDAMENTALS : networking basics... just say networking)";//Request Sent To The AI Model
+var AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All (like instead of saying networking : Learn the basics of TCP/IP and network protocol just say networking for example )and no explanation and if steps have a tool, Programing language, software..etc (like exploitation need a tool like metasploit or ehtical hacking can use python), give one recommendation (like when giving step just say Django instead of NoSql : Django for example or Vulnerabilities and Exploits : metasploit just say metasploit or instead of saying programing languages(python) just say python) and the output must not have bold text or headers and make sure the steps doesn’t exceed 13 steps and with no certification or exam or competitions or programs ( no CEH Exem ...etc) and no sections (no FUNDAMENTALS : networking basics... just say networking)";//Request Sent To The AI Model
 var filtered_AI_Response = [];//AI Response
 var Videos_Results = [];//Videos Generated
 var Videos_Results_Filter = [];//Videos Generated
@@ -71,8 +71,7 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    await AI.run("can you give me a perfect search keyword to search on youtube if i want to learn " + filtered_AI_Response[index] + " in " + User_Input + " and with no context and make it one keyword and allow spaces")
-    keywords[index] = fs.readFileSync('./result.txt', 'utf8').toString()
+    keywords[index] = "Learn " + filtered_AI_Response[index] + " in " + User_Input;
 
     await Youtube_API.main(keywords[index]);
     Video_Find(index);
@@ -193,7 +192,7 @@ app.post('/results', (req, res) => {
 app.post('/', (req, res) => {
   const { parcel } = req.body
   User_Input = parcel
-  AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All (like instead of saying networking : Learn the basics of TCP/IP and network protocol just say networking for example )and no explanation and if steps have a tool, Programing language, software..etc (like exploitation need a tool like metasploit), give one recommendation (like when giving step just say Django instead of NoSql : Django for example or Vulnerabilities and Exploits : metasploit just say metasploit ) and the output must not have bold text or headers and make sure the steps doesn’t exceed 13 steps and with no certification or exam or competitions or programs ( no CEH Exem ...etc) and no sections (no FUNDAMENTALS : networking basics... just say networking)";
+  AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All (like instead of saying networking : Learn the basics of TCP/IP and network protocol just say networking for example )and no explanation and if steps have a tool, Programing language, software..etc (like exploitation need a tool like metasploit or ehtical hacking can use python), give one recommendation (like when giving step just say Django instead of NoSql : Django or nosql : Django, mongoDB..etc for example or Vulnerabilities and Exploits : metasploit just say metasploit or instead of saying programing languages(python) just say python) and the output must not have bold text or headers and make sure the steps doesn’t exceed 13 steps and with no certification or exam or competitions or programs ( no CEH Exem ...etc) and no sections (no FUNDAMENTALS : networking basics... just say networking)";//Request Sent To The AI Model
   console.log(parcel)
   if(!parcel) {
     return res.status(400).send({ info: 'err' })
