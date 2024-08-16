@@ -37,6 +37,8 @@ async function AIDelay()
 async function filter_AI() {
 
   console.log("started");
+  
+  filtered_AI_Response = []
 
   const fileContent = await fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
   filtered_AI_Response = await fileContent.split('\n')
