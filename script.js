@@ -92,7 +92,7 @@ async function GenerateQuestion() {
 
 async function GenerateExplanation() {
   for (let index = 0; index < keywords.length; index++) {
-      await AI.run("can you give me a detailed explanation that teaches " + filtered_AI_Response[index] + " for beginners and teach everything about it (like when i say networs or networking teach everything like tcp and udp, ip adresses..etc and not just what is networking for example) and make sure that it is extremely detailed")
+      await AI.run("can you give me a detailed explanation that teaches " + filtered_AI_Response[index] + " for beginners and teach everything about it (like when i say networks or networking teach everything like tcp and udp, ip adresses..etc and not just what is networking for example) and make sure that it is extremely detailed")
       explanation[index] = await fs.readFileSync('./result.txt', 'utf8').split('\n').join('\n').replace(/\n/g, "%");
       console.log(explanation[index])//puts the explanation in the variable
   }
