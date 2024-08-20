@@ -84,7 +84,7 @@ async function Finder() {
 
 async function GenerateQuestion() {
   for (let index = 0; index < Videos_Results_Filter.length; index++) {
-        await AI.run("can You Generate Me An Open Question about the topic " + keywords[index] + " but output only the question no context just the question")
+        await AI.run("can You Generate Me An Open Question about the topic " + keywords[index] + " but output only the question no context just the question (and when i say networks or networking Ask Something in networking like tcp and udp, ip adresses..etc and not just what is networking for example)")
         Questions[index] = await fs.readFileSync('./result.txt', 'utf8').toString()
         console.log(Questions[index])//puts the question in the variable
   }
