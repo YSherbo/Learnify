@@ -129,7 +129,7 @@ input[type=text] {
 	border-radius: 50px;
 	border: #00000000;
 	font-family: bold;
-	font-size: 200%;
+	font-size: 3vw;
 	color: white;
 	padding: 15px 40px;
 	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
@@ -152,7 +152,7 @@ button {
 	border-radius: 50px;
 	border: #00000000;
 	font-family: bold;
-	font-size: 30px;
+	font-size: 3vw;
 	padding: 15px;
 	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 	background-color: #011640;
@@ -166,7 +166,7 @@ button:hover {
 }
 
 .bigText {
-	font-size: 700%;
+	font-size: 8vw;
 }
 h2 {
 	color: white;
@@ -291,6 +291,7 @@ body {
         top: 5rem;
         flex-direction: column;
         background-color: #011640;
+		z-index: 999999;
         width: 100%;
         border-radius: 10px;
         text-align: center;
