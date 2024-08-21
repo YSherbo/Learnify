@@ -13,6 +13,24 @@
     
 }) (jQuery);
 
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".main-nav");
+
+hamburger.addEventListener("click", mobileMenu);
+
+function mobileMenu() {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+}
+
+const navLink = document.querySelectorAll("li");
+
+navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+function closeMenu() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+}
 
 const GetBtn = document.getElementById("GET_Button")
 const POSTBtn = document.getElementById("POST_Button")
@@ -47,9 +65,11 @@ GetBtn.addEventListener('click', async function(event) {
 });
 async function GetInfo() {
     const generating = document.createElement('h1')
-    generating.innerHTML = 'Sit Back While We Generate Your Course...'
+    generating.innerHTML = 'Generating Course'
     div.appendChild(generating)
-
+    const loader = document.createElement('div')
+    loader.className = 'loader'
+    div.appendChild(loader)
     const res = await fetch(URLs[0], {
         method: 'GET'
     })
@@ -58,6 +78,7 @@ async function GetInfo() {
     const videos = JSON.parse(data)
     console.log(videos[1])
     generating.remove()
+    loader.remove()
 
     const EXPBTN = document.createElement('button')
     EXPBTN.innerHTML = 'Genarate Detailed Text Explanation'
@@ -107,8 +128,11 @@ async function GetInfo() {
 async function GetQuestions(e) {
     e.preventDefault()
     const generating = document.createElement('h1')
-    generating.innerHTML = 'Generating Your Quiz...'
+    generating.innerHTML = 'Generating Quiz'
     div.appendChild(generating)
+    const loader = document.createElement('div')
+    loader.className = 'loader'
+    div.appendChild(loader)
 
     const res = await fetch(URLs[2], {
         method: 'GET'
@@ -117,6 +141,7 @@ async function GetQuestions(e) {
     const QuestionsJSON = await res.json()
     const Questions = JSON.parse(QuestionsJSON)
     generating.remove()
+    loader.remove()
     console.log(Questions[1])
 
     const QuestionElement = []
@@ -174,8 +199,11 @@ async function SubmitInfo() {
 
 async function GetAnswers() {
     const generating = document.createElement('h1')
-    generating.innerHTML = 'Getting Answers...'
+    generating.innerHTML = 'Generating Results'
     div.appendChild(generating)
+    const loader = document.createElement('div')
+    loader.className = 'loader'
+    div.appendChild(loader)
 
     const res = await fetch(URLs[4], {
         method: 'GET'
@@ -184,6 +212,7 @@ async function GetAnswers() {
     const data = await res.json()
     const Answers = JSON.parse(data)
     generating.remove()
+    loader.remove()
     for (let index = 1; index < Answers.length; index++) {
         fragmentText3[index] = document.createElement('h1')
         fragmentText3[index].innerHTML = 'Question No: ' + index
@@ -221,8 +250,12 @@ async function SendInfo() {
 async function GetEXP(e) {
     e.preventDefault()
     const generating = document.createElement('h1')
-    generating.innerHTML = 'Generating Detailed Explainaition...'
+    generating.innerHTML = 'Generating Explaination'
     div.appendChild(generating)
+    const loader = document.createElement('div')
+    loader.className = 'loader'
+    div.appendChild(loader)
+
 
     const res = await fetch(URLs[5], {
         method: 'GET'
@@ -231,6 +264,7 @@ async function GetEXP(e) {
     const EXPJSON = await res.json()
     const Exp = JSON.parse(EXPJSON)
     generating.remove()
+    loader.remove()
     console.log(Exp[1])
 
     const ExpElement = []

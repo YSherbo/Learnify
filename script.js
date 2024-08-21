@@ -21,7 +21,7 @@ var CheckAnswers = []; //answers checked
 var explanation = [];//Explanaitions Generated
 const port = process.env.PORT || 4000;
 var Delayed = true;
-var timeout = ["", "The Server Is Busy, Please Wait One Minute Then Try Again", "Error Code: AI_TIMEOUT"];
+var timeout = ["", "The Server Is Busy, Please Wait One Minute Then Try Again", "Info : We Add A One Minute Delay After Every Request To Prevent Surpassing The Request Limit"];
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
