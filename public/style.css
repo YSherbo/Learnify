@@ -232,6 +232,11 @@ body {
 	
 }
 
+iframe {
+	width: 70%;
+	height: 70vh;
+}
+
 /* HTML: <div class="loader"></div> */
 .loader {
 	width: 50px;
@@ -347,5 +352,11 @@ body {
 	.bigText {
 		font-size: 15vw;
 	}
+
+	iframe {
+		width: 95%;
+		height: 25vh;
+	}
+	
 
 }

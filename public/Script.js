@@ -105,8 +105,6 @@ async function GetInfo() {
         
             fragment[index] = document.createElement('iframe')
             fragment[index].src = 'https://www.youtube.com/embed/' + videos[index]
-            fragment[index].width = 560
-            fragment[index].height = 315
             fragment[index].title = 'YouTube video player'
             fragment[index].frameBorder = 0
             fragment[index].allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
