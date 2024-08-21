@@ -298,7 +298,6 @@ iframe {
 		z-index: 999999;
         width: 100%;
 		height: 100%;
-        border-radius: 10px;
         text-align: center;
         transition: 0.3s;
         box-shadow:
@@ -332,7 +331,7 @@ iframe {
 		font-family: bold;
 		font-size: 4vw;
 		color: white;
-		padding: 10px 10px;
+		padding: 6px 6px;
 		box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 		background-color: #011640;
 	}
@@ -341,7 +340,7 @@ iframe {
 		border-radius: 50px;
 		border: #00000000;
 		font-family: bold;
-		padding: 10px;
+		padding: 6px;
 		font-size: 4vw;
 		box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 		background-color: #011640;
@@ -350,7 +349,7 @@ iframe {
 	}
 
 	.bigText {
-		font-size: 10vw;
+		font-size: 13vw;
 	}
 
 	iframe {
@@ -361,26 +360,28 @@ iframe {
 	h1 {
 		font-family: Bold;
 		color: white;
-		font-size: 6vw;
+		font-size: 5vw;
 	}
     
     .card {
 	   width: 100%;
 	   padding: 15px;
 	   background-color: #011640;
-	   border-radius: 20px;
      }
 
     .card2 {
 	   width: 100%;
 	   padding: 15px;
 	   background-color: #011640;
-	   border-radius: 20px;
 	   background-color: rgba(0, 0, 0, 0.61);
 	   backdrop-filter: blur(15px);
 	   -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	   -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	   box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);  
+    }
+    
+    p{
+       font-size: 4.5vw;
     }
 	
 	
