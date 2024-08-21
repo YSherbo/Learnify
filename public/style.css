@@ -363,6 +363,25 @@ iframe {
 		color: white;
 		font-size: 7vw;
 	}
+    
+    .card {
+	   width: 100%;
+	   padding: 15px;
+	   background-color: #011640;
+	   border-radius: 20px;
+     }
+
+    .card2 {
+	   width: 100%;
+	   padding: 15px;
+	   background-color: #011640;
+	   border-radius: 20px;
+	   background-color: rgba(0, 0, 0, 0.61);
+	   backdrop-filter: blur(15px);
+	   -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	   -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	   box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);  
+    }
 	
 	
 
