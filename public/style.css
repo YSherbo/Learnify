@@ -357,6 +357,13 @@ iframe {
 		width: 95%;
 		height: 25vh;
 	}
+
+	h1 {
+		font-family: Bold;
+		color: white;
+		font-size: 10vw;
+	}
+	
 	
 
 }
