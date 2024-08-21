@@ -332,7 +332,7 @@ iframe {
 		font-family: bold;
 		font-size: 4vw;
 		color: white;
-		padding: 15px 15px;
+		padding: 10px 10px;
 		box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 		background-color: #011640;
 	}
@@ -341,7 +341,7 @@ iframe {
 		border-radius: 50px;
 		border: #00000000;
 		font-family: bold;
-		padding: 15px;
+		padding: 10px;
 		font-size: 4vw;
 		box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 		background-color: #011640;
@@ -350,7 +350,7 @@ iframe {
 	}
 
 	.bigText {
-		font-size: 15vw;
+		font-size: 10vw;
 	}
 
 	iframe {
@@ -361,7 +361,7 @@ iframe {
 	h1 {
 		font-family: Bold;
 		color: white;
-		font-size: 7vw;
+		font-size: 6vw;
 	}
     
     .card {
