@@ -251,8 +251,7 @@ body {
 }
 
 iframe {
-	width: 70%;
-	height: 70vh;
+    border-radius: 50px;
 }
 
 /* HTML: <div class="loader"></div> */
@@ -368,11 +367,6 @@ iframe {
 
 	.bigText {
 		font-size: 13vw;
-	}
-
-	iframe {
-		width: 95%;
-		height: 25vh;
 	}
 
 	h1 {
