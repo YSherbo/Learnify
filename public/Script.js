@@ -102,15 +102,23 @@ async function GetInfo() {
 
             const br = document.createElement('br')
             div.appendChild(br)
+
+            const container = []
+            container[index] = document.createElement('div');
+            container[index].className = 'video-container';
         
             fragment[index] = document.createElement('iframe')
             fragment[index].src = 'https://www.youtube.com/embed/' + videos[index]
+            fragment[index].width = '560'
+            fragment[index].height = '315'
             fragment[index].title = 'YouTube video player'
             fragment[index].frameBorder = 0
             fragment[index].allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
             fragment[index].referrerPolicy ='strict-origin-when-cross-origin'
             fragment[index].allowFullscreen = true
-            div.appendChild(fragment[index])
+
+            container[index].appendChild(fragment[index]);
+            div.appendChild(container[index]);
 
             const br2 = document.createElement('br')
             div.appendChild(br2)
