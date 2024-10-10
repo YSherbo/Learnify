@@ -228,7 +228,7 @@ async function GetAnswers() {
         div.appendChild(br)
         
         fragment3[index] = document.createElement('h1')
-        fragment3[index].innerHTML = Answers[index]
+        fragment3[index].innerHTML = Answers[index].replace(/%/g, "<br>")
         fragment3[index].className = 'question'
         div.appendChild(fragment3[index])
 
