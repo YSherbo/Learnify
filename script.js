@@ -178,7 +178,7 @@ app.post('/results', (req, res) => {
     if (Delayed) {
       for (let index = 0; index < Questions.length; index++) {
       
-        await AI.run("Was " + answers[index] + " the Correct Answer for the question " + Questions[index] + "? and output only true or false and without any context")
+        await AI.run("Was " + answers[index] + " the Correct Answer for the question " + Questions[index] + "? and output only true or false and without any context and if the answer is wrong, say the correct answer then say why this is the correct answer")
         CheckAnswers[index] = fs.readFileSync('./result.txt', 'utf8').toString()
       }
     }
