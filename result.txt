@@ -1,0 +1,13 @@
+1.  Networking
+2.  Linux
+3.  Python
+4.  Web Applications
+5.  Databases : MySQL
+6.  Cryptography
+7.  Vulnerabilities and Exploits : metasploit
+8.  Web Application Vulnerabilities : OWASP ZAP
+9.  Reverse Engineering : Ghidra
+10. Social Engineering
+11. Wireless Security : Aircrack-ng
+12. Reporting
+13. Privilege Escalation

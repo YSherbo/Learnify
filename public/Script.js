@@ -56,7 +56,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const URLs = ['https://learnify-production.up.railway.app/info', 'https://learnify-production.up.railway.app/', 'https://learnify-production.up.railway.app/Question', 'https://learnify-production.up.railway.app/results', 'https://learnify-production.up.railway.app/answers', 'https://learnify-production.up.railway.app/Exp']
+const URLs = ['http://localhost:4000/info', 'http://localhost:4000/', 'http://localhost:4000/Question', 'http://localhost:4000/results', 'http://localhost:4000/answers', 'http://localhost:4000/Exp']
 
 GetBtn.addEventListener('click', async function(event) {
     event.preventDefault();
