@@ -87,7 +87,7 @@ async function GetInfo() {
     EXPBTN.addEventListener('click', GetEXP)
 
     
-    for (let index = 1; index < videos.length; index++) {
+    for (let index = 1; index < 14; index++) {
         if (videos[1] == "The Server Is Busy, Please Wait One Minute Then Try Again") {
 
             fragmentText[index] = document.createElement('h1')
