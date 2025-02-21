@@ -75,7 +75,7 @@ async function Finder() {
 
   for (let index = 1; index < filtered_AI_Response.length; index++) {
 
-    keywords[index] = "Learn " + filtered_AI_Response[index] + " full course -'How I Would Learn'";
+    keywords[index] = filtered_AI_Response[index] + " course";
 
     await Youtube_API.main(keywords[index]);
     Video_Find(index);
