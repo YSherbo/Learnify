@@ -10,18 +10,47 @@ const { Console } = require('console');
 
 //defining data
 var User_Input = "";//What the user wants to learn
-var AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All (like instead of saying networking : Learn the basics of TCP/IP and network protocol just say networking for example )and no explanation and if steps have a tool, Programing language, software..etc (like exploitation need a tool like metasploit or ehtical hacking can use python), give one recommendation (like when giving step just say Django instead of NoSql : Django for example or Vulnerabilities and Exploits : metasploit just say metasploit or instead of saying programing languages(python) just say python) and the output must not have bold text or headers and make sure the steps doesn’t exceed 13 steps and with no certification or exam or competitions or programs ( no CEH Exem ...etc) and no sections (no FUNDAMENTALS : networking basics... just say networking)(and if theres something related to the specific topic say ... in *topic* (like if i said java programming, intead of sayng (programing fundementals) say (programing fundementals in java) but in networking since its its on topic and not related to something specific say networking)) and dont include Additional steps like ( Dont Include (Practice : tryhackme)) and make sure that the lines are under each other, no addditional empty lines( like since i asked for 13 steps only, do them in exactly 13 lines) and dont say the category then a special character (like : ) then the item, just say the item direcly and make sure its on a numberd list (DO IT EXACTLY LIKR THAT 1. ) and say the best the name of the best youtube channel that teaches the item through only one video( not a playlist or multiple parts) i can watch if i want to learn the step after saying the step (like when saying penetration testing methodologies, say (Penetration Testing Methodologies FreeCodeCamp) for Example) and never include : or - at all";//Request Sent To The AI Model
-var filtered_AI_Response = [];//AI Response
-var Videos_Results = [];//Videos Generated
-var Videos_Results_Filter = [];//Videos Generated
-var Questions = [];//Questions Generated
-var keywords = [];//Keywords Generated
-var answers = [];//Answers Generated
-var CheckAnswers = []; //answers checked
-var explanation = [];//Explanaitions Generated
+var AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating them and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
+and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only)
+do it like this:
+
+Videoname
+Channelname
+Videoname
+Channelname
+
+finally, make sure it consists of 13 steps max and 5 steps minimum`;
+
+var AI_Request2 = `give me a detailed text explaination of ` + User_Input + ` make sure it is a full explaination(Like for example: if I want to learn Mechanical Engineering, First give me an explaination on Statics then dynamics etc etc) and not an introduction only and make sure it is a detailed
+and in-depth explaination with everything in it and mark headers and subheaders with <h2> instead of ** and the text with <p> instead of no mark-up at all`;
+
+var AI_Request3 = `Can You Give Me a Multiple Choice ` + User_Input + ` Quiz and and dont say any context at all (no heres.... etc etc just give me the questions and make sure there are 3 choices, a, b, c and finally make sure everything is directly under each other no spacing at all, everything is right under each other
+
+do it like this: 
+
+Question
+A- Choice1
+B- Choice2
+C- Choice3
+Question2
+A- Choice1
+B- Choice2
+C- Choice3
+
+And With No Numbered list no bullet points nothing at all for the questions
+`;
+
+var Videos = [];
+var Channels = [];
+var videoID = [];
+var channelID = [];
+var Explanation = "";
 const port = process.env.PORT || 4000;
-var Delayed = true;
 var timeout = ["", "The Server Is Busy, Please Wait One Minute Then Try Again", "Info : We Add A One Minute Delay After Every Request To Prevent Surpassing The Request Limit"];
+var Delayed = true;
+var questions = [];
+var Answers = [];
+var results = [];
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -31,90 +60,118 @@ async function AIDelay()
 {
   Delayed = false;
   await delay(60000);
-  fs.unlinkSync('./result.txt')
   fs.unlinkSync('./data.json')
+  fs.unlinkSync('./channeldata.json')
   Delayed = true;
 }
 
-async function filter_AI() {
+//Video Feature
+async function getData() {// Runs The AI Request Through The Gemini API
+  try {
+    const data = await AI.run(AI_Request);
+    const lines = data.split('\n');
+    const videos = [];
+    const channels = [];
 
-  console.log("started");
-  
-  filtered_AI_Response = []
+    for (let i = 0; i < lines.length; i += 2) {
+      videos.push(lines[i]);
+      if (i + 1 < lines.length) {
+        channels.push(lines[i + 1]);
+      }
+    }
 
-  const fileContent = await fs.readFileSync('./result.txt', 'utf8');//reads the AI Defautlt response
-  filtered_AI_Response = await fileContent.split('\n')
+    console.log(videos);
+    console.log(channels);
+
+    Videos = videos;
+    Channels = channels;
+
+  } catch (error) {
+
+    console.error("Error fetching data from AI:", error);
+    throw error;
+  }
+}
+
+async function getVideos() {//Searches For The Channel Then The Video
+  try {
+    for (let i = 0; i < Channels.length; i++) {
+      await Youtube_API.main2(Channels[i]);//Searches For The Channel through the API
+      const data = JSON.parse(await fs.readFileSync("./channeldata.json"));
+      channelID[i] = data[0].id.channelId;
+      console.log(channelID[i]);
+
+      await Youtube_API.main(Videos[i], data[0].id.channelId);//Searches For The Video through the API
+      const data2 = JSON.parse(await fs.readFileSync("./data.json"));
+      videoID[i] = data2[0].id.videoId;
+      console.log(videoID[i]);
+
+    }
+
+  } catch (error) {
+
+    console.error("Error fetching data from Youtube API:", error);
+    throw error;
+  }
+}
+
+async function main() {//Runs The Functions of the Video Feature
+  try {
+    await getData();
+    await getVideos();
+
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+//Explanation Feature
+async function getExplanation() {
+  try {
+    const data = await AI.run(AI_Request2);
+    console.log(data);
+    data.split('\n').join('\n').replace(/\n/g, "%");
+    Explanation = data;
+  } catch (error) {
+    console.error("Error fetching data from AI:", error);
+    throw error;
+  }
+
+}
+
+async function getQuestions() {// Runs The AI Request Through The Gemini API
+  try {
+    const data = await AI.run(AI_Request3);
+    const lines = data.split('\n');
+    const Questions1 = [];
+
+    for (let i = 0; i < lines.length; i += 4) {
+      Questions1[i].push
+      (`${lines[i]}
+        ${lines[i+1]}
+        ${lines[i+2]}
+        ${lines[i+3]}`);
+      }
+
+      console.log(Questions1[i]);
+      questions[i] = Questions1[i];
+    }
+
     
-  for (let index = 0; index < 13; index++) {
+   catch (error) {
 
-    filtered_AI_Response[index] = filtered_AI_Response[index].substring(3)
-
-    console.log(filtered_AI_Response[index])
-  }
-  
-  filtered_AI_Response.unshift("")
-}
-
-function Video_Find(index) {
-
-    const fileContent = fs.readFileSync('./data.json', 'utf8');//gets the video id
-    const lines = fileContent.split('\n');//strips down the result for the needs of the application
-    const searchString = 'videoId';
-    const matchingLines = lines.filter(line => line.includes(searchString));
-
-    matchingLines.forEach(matchingLine => {
-      console.log(matchingLine);
-      Videos_Results[index] = fileContent.toString();
-      Videos_Results_Filter[index] = matchingLine.substring(18, 29);
-      console.log(Videos_Results_Filter[index]);//putss the video id in the variable
-    });
-}
-
-async function Finder() {
-
-
-  for (let index = 1; index < filtered_AI_Response.length; index++) {
-
-    keywords[index] = filtered_AI_Response[index];
-
-    await Youtube_API.main(keywords[index]);
-    Video_Find(index);
-
-  }
-
-}
-
-async function GenerateQuestion() {
-  for (let index = 0; index < Videos_Results_Filter.length; index++) {
-        await AI.run("can You Generate Me An Open Question about the topic " + keywords[index] + " but output only the question no context just the question (and when i say networks or networking Ask Something in networking like tcp and udp, ip adresses..etc and not just what is networking for example)")
-        Questions[index] = await fs.readFileSync('./result.txt', 'utf8').toString()
-        console.log(Questions[index])//puts the question in the variable
+    console.error("Error fetching data from AI:", error);
+    throw error;
   }
 }
 
-async function GenerateExplanation() {
-  for (let index = 0; index < keywords.length; index++) {
-      await AI.run("can you give me a detailed explanation that teaches " + filtered_AI_Response[index] + " for beginners and teach everything about it (like when i say networks or networking teach everything like tcp and udp, ip adresses..etc and not just what is networking for example) and make sure that it is extremely detailed")
-      explanation[index] = await fs.readFileSync('./result.txt', 'utf8').split('\n').join('\n').replace(/\n/g, "%");
-      console.log(explanation[index])//puts the explanation in the variable
-  }
-}
-
-
-async function Generate() {
-
-  console.log("Waiting For AI..");
-  await AI.run(AI_Request);
-  await filter_AI();
-  await Finder();
-}
 
 app.get('/info', (req, res) => {
   async function GenerateHTML() {
     if (Delayed) {
 
-      await Generate()
-      const VideosJSON = await JSON.stringify(Videos_Results_Filter)
+      await main()
+      const VideosJSON = await JSON.stringify(videoID)
       res.status(200).json(VideosJSON)
       AIDelay()
     }
@@ -128,13 +185,12 @@ app.get('/info', (req, res) => {
 })
 
 app.get('/Question', (req, res) => {
-  async function GenerateQuestionHTML() {
-
+  async function GenerateQHTML() {
     if (Delayed) {
 
-      await GenerateQuestion()
-      const QuestionsJSON = JSON.stringify(Questions)
-      res.status(200).json(QuestionsJSON)
+      await getQuestions();
+      const QJSON = await JSON.stringify(questions)
+      res.status(200).json(QJSON)
       AIDelay()
     }
     else {
@@ -142,17 +198,16 @@ app.get('/Question', (req, res) => {
       const timeoutJSON = await JSON.stringify(timeout)
       res.status(200).json(timeoutJSON)
     }
-    
   }
-  GenerateQuestionHTML()
+  GenerateQHTML()
 })
 
 app.get('/Exp', (req, res) => {
   async function GenerateExpHTML() {
 
     if (Delayed) {
-      await GenerateExplanation()
-      const EXPJSON = JSON.stringify(explanation)
+      await getExplanation()
+      const EXPJSON = JSON.stringify(Explanation)
       res.status(200).json(EXPJSON)
       AIDelay()
     }
@@ -163,25 +218,29 @@ app.get('/Exp', (req, res) => {
     }
   }
   GenerateExpHTML()
+
 })
 
 
 app.get('/answers', (req, res) => {
-    res.status(200).json(JSON.stringify(CheckAnswers))
+  res.status(200).json(JSON.stringify(results))
 })
 
 
 
 app.post('/results', (req, res) => {
   const { parcel } = req.body
+  var CheckAnswers = [];
+
   async function CheckAnswersF() {
-    answers = parcel
+    Answers = parcel
     
     if (Delayed) {
-      for (let index = 0; index < Questions.length; index++) {
+      for (let index = 0; index < questions.length; index++) {
       
-        await AI.run("Was " + answers[index] + " the Correct Answer for the question " + Questions[index] + "? and output only correct or incorrect and without any context and if the answer is wrong, say the correct answer then say why this is the correct answer")
-        CheckAnswers[index] = fs.readFileSync('./result.txt', 'utf8').split('\n').join('\n').replace(/\n/g, "%")
+        CheckAnswers[index] = await AI.run("Was " + Answers[index] + " the Correct Answer for the question " + questions[index] + "? and output only correct or incorrect and without any context and if the answer is wrong, say the correct answer then say why this is the correct answer")
+        CheckAnswers[index].split('\n').join('\n').replace(/\n/g, "%")
+        results[index] = CheckAnswers[index];
       }
     }
   }
@@ -194,14 +253,25 @@ app.post('/results', (req, res) => {
 })
 
 app.post('/', (req, res) => {
+
   const { parcel } = req.body
   User_Input = parcel
-  AI_Request = "Can you give me a step by step Roadmap for learning " + User_Input + " for beginners and with no Context At All (like instead of saying networking : Learn the basics of TCP/IP and network protocol just say networking for example )and no explanation and if steps have a tool, Programing language, software..etc (like exploitation need a tool like metasploit or ehtical hacking can use python), give one recommendation (like when giving step just say Django instead of NoSql : Django for example or Vulnerabilities and Exploits : metasploit just say metasploit or instead of saying programing languages(python) just say python) and the output must not have bold text or headers and make sure the steps doesn’t exceed 13 steps and with no certification or exam or competitions or programs ( no CEH Exem ...etc) and no sections (no FUNDAMENTALS : networking basics... just say networking)(and if theres something related to the specific topic say ... in *topic* (like if i said java programming, intead of sayng (programing fundementals) say (programing fundementals in java) but in networking since its its on topic and not related to something specific say networking)) and dont include Additional steps like ( Dont Include (Practice : tryhackme)) and make sure that the lines are under each other, no addditional empty lines( like since i asked for 13 steps only, do them in exactly 13 lines) and dont say the category then a special character (like : ) then the item, just say the item direcly and make sure its on a numberd list (DO IT EXACTLY LIKR THAT 1. ) and say the best the name of the best youtube channel that teaches the item through only one video( not a playlist or multiple parts) i can watch if i want to learn the step after saying the step (like when saying penetration testing methodologies, say (Penetration Testing Methodologies FreeCodeCamp) for Example) and never include : or - at all";//Request Sent To The AI Model
   console.log(parcel)
+  AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating them and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
+and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only)
+do it like this:
+
+Videoname
+Channelname
+Videoname
+Channelname
+
+finally, make sure it consists of 13 steps max and 5 steps minimum`;
+
+  console.log(User_Input)
   if(!parcel) {
     return res.status(400).send({ info: 'err' })
   }
-  
 })
 
 app.listen(port, () => {

@@ -87,7 +87,7 @@ async function GetInfo() {
     EXPBTN.addEventListener('click', GetEXP)
 
     
-    for (let index = 1; index < 14; index++) {
+    for (let index = 0; index < 13; index++) {
         if (videos[1] == "The Server Is Busy, Please Wait One Minute Then Try Again") {
 
             fragmentText[index] = document.createElement('h1')
@@ -284,7 +284,7 @@ async function GetEXP(e) {
         }
         else {
 
-            ExpElement[index] = document.createElement('h1')
+            ExpElement[index] = document.createElement('center')
             ExpElement[index].innerHTML = 'Lesson No: ' + index + '\n' + Exp[index].replace(/%/g, "<br>")
             div.appendChild(ExpElement[index])
 

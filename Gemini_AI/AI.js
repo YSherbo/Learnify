@@ -29,8 +29,8 @@ async function run(question) {
   const response = await result.response;
   const text = response.text();
   console.log(text);
-  AI_Response = text;  
-  fs.writeFileSync("./result.txt", text);
+  AI_Response = text;
+  return text;  
 }
 
 
