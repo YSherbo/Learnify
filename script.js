@@ -187,6 +187,21 @@ app.get('/info', (req, res) => {
 app.get('/Question', (req, res) => {
   async function GenerateQHTML() {
     if (Delayed) {
+      AI_Request3 = `Can You Give Me a Multiple Choice ` + User_Input + ` Quiz and and dont say any context at all (no heres.... etc etc just give me the questions and make sure there are 3 choices, a, b, c and finally make sure everything is directly under each other no spacing at all, everything is right under each other
+
+      do it like this: 
+      
+      Question
+      A- Choice1
+      B- Choice2
+      C- Choice3
+      Question2
+      A- Choice1
+      B- Choice2
+      C- Choice3
+      
+      And With No Numbered list no bullet points nothing at all for the questions
+      `;
 
       await getQuestions();
       const QJSON = await JSON.stringify(questions)
@@ -206,6 +221,8 @@ app.get('/Exp', (req, res) => {
   async function GenerateExpHTML() {
 
     if (Delayed) {
+      AI_Request2 = `give me a detailed text explaination of ` + User_Input + ` make sure it is a full explaination(Like for example: if I want to learn Mechanical Engineering, First give me an explaination on Statics then dynamics etc etc) and not an introduction only and make sure it is a detailed
+and in-depth explaination with everything in it and mark headers and subheaders with <h2> instead of ** and the text with <p> instead of no mark-up at all`;
       await getExplanation()
       const EXPJSON = JSON.stringify(Explanation)
       res.status(200).json(EXPJSON)
