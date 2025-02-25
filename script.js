@@ -19,7 +19,7 @@ Channelname
 Videoname
 Channelname
 
-finally, make sure it consists of 13 steps max and 5 steps minimum`;
+finally, make sure it consists of 13 steps max and 5 steps minimum and again NO EXTRA LINES MAKE SURE THEYRE UNDER EACH OTHER`;
 
 var AI_Request2 = `give me a detailed text explaination of ` + User_Input + ` make sure it is a full explaination(Like for example: if I want to learn Mechanical Engineering, First give me an explaination on Statics then dynamics etc etc) and not an introduction only and make sure it is a detailed
 and in-depth explaination with everything in it and mark headers and subheaders with <h2> instead of ** and the text with <p> instead of no mark-up at all`;
@@ -283,7 +283,7 @@ Channelname
 Videoname
 Channelname
 
-finally, make sure it consists of 13 steps max and 5 steps minimum`;
+finally, make sure it consists of 13 steps max and 5 steps minimum and again NO EXTRA LINES MAKE SURE THEYRE UNDER EACH OTHER`;
 
   console.log(User_Input)
   if(!parcel) {
