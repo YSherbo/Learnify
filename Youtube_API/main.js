@@ -25,6 +25,23 @@ async function getYoutubeResults(query, channel, resultsPerPage, pageToken) {
   return data;
 }
 
+async function getYoutubeResults2(query, channel, resultsPerPage, pageToken) {
+  console.log("Ready to get Youtube data!");
+  let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&part=id&safeSearch=moderate&type=video&videoEmbeddable=true&q=${query}`;
+  if (resultsPerPage) {
+    url = `${url}&maxResults=${resultsPerPage}`;
+  }
+  if (pageToken) {
+    url = `${url}&pageToken=${pageToken}`;
+  }
+
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+
+  return data;
+}
+
 async function getChannelResults(query, resultsPerPage, pageToken) {
   console.log("Ready to get Youtube data!");
   let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY2}&part=id&safeSearch=moderate&type=channel&q=${query}`;
@@ -76,7 +93,25 @@ async function main2(channel)
   fs.writeFileSync("./channeldata.json", channelDataJSON);
 }
 
+async function main3(keyword) {
+  const videoData = [];
+
+  let totalPages = 1;
+  let nextPageToken = undefined;
+
+  for (let counter = 0; counter < totalPages; counter = counter + 1) {
+    const data = await getYoutubeResults2(keyword, 1, nextPageToken);
+    videoData.push(...data.items);
+    nextPageToken = data.nextPageToken;
+  }
+
+  const videoDataJSON = JSON.stringify(videoData, null, 2);
+  fs.writeFileSync("./data.json", videoDataJSON);
+}
+
+
 module.exports = {
   main,
-  main2
+  main2,
+  main3
 };

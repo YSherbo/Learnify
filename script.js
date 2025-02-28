@@ -10,16 +10,16 @@ const { Console } = require('console');
 
 //defining data
 var User_Input = "";//What the user wants to learn
-var AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating them and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
+var AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would need to learn calculus then statics then dynamics etc etc so, give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc(kind of like a roadmap)) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating them and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
 and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only)
-do it like this:
-
-Videoname
-Channelname
+make sure to do it ONLY(DONT DO ANY OTHER LAYOUT) in this layout:
 Videoname
 Channelname
 
-finally, make sure it consists of 13 steps max and 5 steps minimum and again NO EXTRA LINES MAKE SURE THEYRE UNDER EACH OTHER`;
+Videoname
+Channelname
+
+finally, make sure it consists of 13 steps max and 5 steps minimum and again NO EXTRA LINES MAKE SURE THE STEPS AND CHANNELS ARE RIGHT UNDER EACH OTHER`;
 
 var AI_Request2 = `give me a detailed text explaination of ` + User_Input + ` make sure it is a full explaination(Like for example: if I want to learn Mechanical Engineering, First give me an explaination on Statics then dynamics etc etc) and not an introduction only and make sure it is a detailed
 and in-depth explaination with everything in it and mark headers and subheaders with <h2> instead of ** and the text with <p> instead of no mark-up at all`;
@@ -37,7 +37,7 @@ A- Choice1
 B- Choice2
 C- Choice3
 
-And With No Numbered list no bullet points nothing at all for the questions
+And With No Numbered list no bullet points nothing at all for the questions and again NO EXTRA LINES MAKE SURE THEYRE UNDER EACH OTHER
 `;
 
 var Videos = [];
@@ -73,7 +73,7 @@ async function getData() {// Runs The AI Request Through The Gemini API
     const videos = [];
     const channels = [];
 
-    for (let i = 0; i < lines.length; i += 2) {
+    for (let i = 0; i < lines.length; i += 3) {
       videos.push(lines[i]);
       if (i + 1 < lines.length) {
         channels.push(lines[i + 1]);
@@ -103,8 +103,21 @@ async function getVideos() {//Searches For The Channel Then The Video
 
       await Youtube_API.main(Videos[i], data[0].id.channelId);//Searches For The Video through the API
       const data2 = JSON.parse(await fs.readFileSync("./data.json"));
-      videoID[i] = data2[0].id.videoId;
-      console.log(videoID[i]);
+
+      if (data2[0] == undefined) {
+        console.log("VIDEO NOT FOUND");
+        
+        await Youtube_API.main3(Videos[i]);//Searches For The Video through the API
+        data2 = JSON.parse(await fs.readFileSync("./data.json"));
+        videoID[i] = data2[0].id.videoId;
+        console.log(videoID[i]);
+      }
+      else {
+        console.log("VIDEO FOUND");
+
+        videoID[i] = data2[0].id.videoId;
+        console.log(videoID[i]);
+      }
 
     }
 
@@ -200,7 +213,7 @@ app.get('/Question', (req, res) => {
       B- Choice2
       C- Choice3
       
-      And With No Numbered list no bullet points nothing at all for the questions
+      And With No Numbered list no bullet points nothing at all for the questions and again NO EXTRA LINES MAKE SURE THEYRE UNDER EACH OTHER
       `;
 
       await getQuestions();
@@ -274,16 +287,15 @@ app.post('/', (req, res) => {
   const { parcel } = req.body
   User_Input = parcel
   console.log(parcel)
-  AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating them and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
+  AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would need to learn calculus then statics then dynamics etc etc so, give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc(kind of like a roadmap)) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating them and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
 and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only)
-do it like this:
-
+make sure to do it ONLY(DONT DO ANY OTHER LAYOUT) in this layout:
 Videoname
 Channelname
 Videoname
 Channelname
 
-finally, make sure it consists of 13 steps max and 5 steps minimum and again NO EXTRA LINES MAKE SURE THEYRE UNDER EACH OTHER`;
+finally, make sure it consists of 13 steps max and 5 steps minimum and again NO EXTRA LINES MAKE SURE THE STEPS AND CHANNELS ARE RIGHT UNDER EACH OTHER`;
 
   console.log(User_Input)
   if(!parcel) {
