@@ -11,7 +11,7 @@ const { Console } = require('console');
 //defining data
 var User_Input = "";//What the user wants to learn
 var AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc and no "learn ... in 5 minuites" type videos i need full explaination) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would need to learn calculus then statics then dynamics etc etc so, give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc(kind of like a roadmap)) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating the videoname and channelname of the same step (Add Empty Line between each step) and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
-and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only)
+and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only) and make sure that both the videos and the channels are popular(one of the most popular videos and channels in the feild i asked for videos on)
 make sure to do the step in ONLY(DONT DO ANY OTHER LAYOUT) this layout make sure the list comes out looking like this below:
 Videoname
 Channelname
@@ -58,6 +58,14 @@ async function AIDelay()
 {
   Delayed = false;
   await delay(60000);
+  Channels = []
+  Videos = []
+  videoID = []
+  channelID = []
+  Explanation = ""
+  questions = []
+  Answers = []
+  results = []
   fs.unlinkSync('./data.json')
   fs.unlinkSync('./channeldata.json')
   Delayed = true;
@@ -286,7 +294,7 @@ app.post('/', (req, res) => {
   User_Input = parcel
   console.log(parcel)
   AI_Request = `give me a list of the best YouTube videos i can watch so that i can watch to become from total beginner to advanced in ` + User_Input + `. make sure it consists of only one large part video (no playlist or videos that have a part 2 or 3..etc and no "learn ... in 5 minuites" type videos i need full explaination) and make sure the list that i have is a Road-map (like for example:if i wanted to learn mechanical engineering, first you would need to learn calculus then statics then dynamics etc etc so, give me a video that explains calculus, then you would give me another one explaining statics then dynamics etc etc(kind of like a roadmap)) and dont include any context of any kind, just give me a list with the video name and the channel name right under it  and no headers or context or bullet points at all nor any numbered list, just arange it without anything (no heres..... in the beginning and no bullet points) and make then directly under each other, no extra empty lines seperating the videoname and channelname of the same step (Add Empty Line between each step) and make each step right under each other, no empty lines seperating them (Like when doing 13 steps make sure its 26 lines) i want everything RIGHT UNDER EACH OTHER,
-and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only)
+and make sure that the channel names are the EXACT NAME WRITTEN ON YOUTUBE, no abreviations(so i can find it as the first result to pop up in the youtube search results), and make sure the video still exists and the channel still exists and is a full explaination video(not introduction only) and make sure that both the videos and the channels are popular(one of the most popular videos and channels in the feild i asked for videos on)
 make sure to do the step in ONLY(DONT DO ANY OTHER LAYOUT) this layout make sure the list comes out looking like this below:
 Videoname
 Channelname
