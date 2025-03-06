@@ -44,7 +44,7 @@ async function getYoutubeResults2(query, channel, resultsPerPage, pageToken) {
 
 async function getChannelResults(query, resultsPerPage, pageToken) {
   console.log("Ready to get Youtube data!");
-  let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY2}&part=id&type=channel&q=${query}`;
+  let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY2}&part=snippet&type=channel&q=${query}`;
   if (resultsPerPage) {
     url = `${url}&maxResults=${resultsPerPage}`;
   }
