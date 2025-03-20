@@ -25,6 +25,43 @@ async function run(question) {
     ],
   });
 
+  try {
+    
+  } catch (error) {
+    
+  }
+
+  const result = await model.generateContent(question);
+  const response = await result.response;
+  const text = response.text();
+  console.log(text);
+  AI_Response = text;
+  return text;  
+}
+
+async function run2(question) {
+  
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    generationConfig: {
+      responseMimeType: "application/json"
+    },
+    safetySettings: [
+      {
+        category: AI.HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: AI.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: AI.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
+      },
+    ],
+  });
+
   const result = await model.generateContent(question);
   const response = await result.response;
   const text = response.text();
@@ -34,6 +71,8 @@ async function run(question) {
 }
 
 
+
 module.exports.AI_Response = AI_Response;
 
 module.exports.run = run;
+module.exports.run2 = run2;

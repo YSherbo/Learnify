@@ -66,22 +66,31 @@
 
         <center>
             <img class="background-image" src="./Files/Background.jpg">
+        </center>
 
-                <h1 class="bigText">
-                    Your AI Mentor Is Here To Help!
-                </h1>
-                <div class="card2">
-                <form id="generateForm">
-                    <input type="text" id="User_Input"  placeholder="Type What You Want To Learn"/>
-                    <button id="GET_Button">Get Course</button>
-                </form><br>
-                </div><br><br><br>
 
-                <div class="card" id="results">
-                    <button onclick="closeWindow()">Clear</button>
+
+                <div class="card3">
+                    <div class="sidenav" id="Lessons">
+                        <a href="#">New Course</a>
+                    </div>
+                    <button class="CoursesBTN" id="CoursesBTN">
+                        ...
+                    </button>
+                        <!-- Page content -->
+                        <div class="main" id="results">
+                            <center>
+                            <h1>Generate a New Course</h1>
+                            <form id="generateForm">
+                                <input type="text" id="User_Input"  placeholder="Type What You Want To Learn"/>
+                                <button id="Generate">Get Course</button>
+                            </form><br>
+                            <p>Generate a New Course</p>
+                        </center>
+                        </div>  
                 </div>
-        
-            </center>
+
+
 
             <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>            
             <script src="Script.js">    
