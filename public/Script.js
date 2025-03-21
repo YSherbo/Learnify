@@ -61,14 +61,14 @@ function closeMenu() {
 }
 
 const URLs = [
-    'http://localhost:4000/info',
-    'http://localhost:4000/',
-    'http://localhost:4000/Question',
-    'http://localhost:4000/results',
-    'http://localhost:4000/answers',
-    'http://localhost:4000/Exp',
-    'http://localhost:4000/GetNum',
-    'http://localhost:4000/GetNumDiff'
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/info',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/Question',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/results',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/answers',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/Exp',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/GetNum',
+    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/GetNumDiff'
 ];
 
 const input = document.getElementById('User_Input');
