@@ -3,76 +3,33 @@ const fs = require("fs");
 
 const API_KEY = process.env.AIAPI;
 const genAI = new AI.GoogleGenerativeAI(API_KEY);
-var AI_Response = "";
-
 
 async function run(question) {
-  const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
-    safetySettings: [
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
-      },
-    ],
-  });
-
-  try {
-    
-  } catch (error) {
-    
-  }
-
-  const result = await model.generateContent(question);
-  const response = await result.response;
-  const text = response.text();
-  console.log(text);
-  AI_Response = text;
-  return text;  
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        const result = await model.generateContent(question);
+        const response = await result.response;
+        return response.text();
+    } catch (error) {
+        console.error("Error in AI API call:", error);
+        throw error;
+    }
 }
 
 async function run2(question) {
-  
-  const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
-    generationConfig: {
-      responseMimeType: "application/json"
-    },
-    safetySettings: [
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: AI.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-        threshold: AI.HarmBlockThreshold.BLOCK_NONE,
-      },
-    ],
-  });
-
-  const result = await model.generateContent(question);
-  const response = await result.response;
-  const text = response.text();
-  console.log(text);
-  AI_Response = text;
-  return text;  
+    try {
+        const model = genAI.getGenerativeModel({
+            model: "gemini-2.0-flash",
+            generationConfig: { responseMimeType: "application/json" }
+        });
+        const result = await model.generateContent(question);
+        const response = await result.response;
+        const responsejson = JSON.parse(response.text());
+        await fs.writeFileSync("./response.json", JSON.stringify(responsejson, null, 2));
+    } catch (error) {
+        console.error("Error in AI API call:", error);
+        throw error;
+    }
 }
 
-
-
-module.exports.AI_Response = AI_Response;
-
-module.exports.run = run;
-module.exports.run2 = run2;
+module.exports = { run, run2 };

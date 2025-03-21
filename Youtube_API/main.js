@@ -25,7 +25,7 @@ async function getYoutubeResults(query, channel, resultsPerPage, pageToken) {
   return data;
 }
 
-async function getYoutubeResults2(query, channel, resultsPerPage, pageToken) {
+async function getYoutubeResults2(query, resultsPerPage, pageToken) {
   console.log("Ready to get Youtube data!");
   let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&part=id&type=video&videoEmbeddable=true&q=${query}`;
   if (resultsPerPage) {
