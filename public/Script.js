@@ -182,6 +182,7 @@ async function getVideos() {
             fragment.appendChild(lesson);
         }
         Lessons.appendChild(fragment);
+        switchPages(0);
     } catch (error) {
         console.error("Error fetching videos:", error);
         div.innerHTML = "<h1>Error fetching videos. Please try again later.</h1>";
