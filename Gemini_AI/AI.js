@@ -39,12 +39,9 @@ async function run3(question) {
             model: "gemini-2.0-flash", 
             tools: [
                 {
-                  googleSearchRetrieval: {
-                    dynamicRetrievalConfig: {
-                      mode: 'MODE_DYNAMIC',  // Or try 'DISABLED' for no dynamic retrieval
-                      dynamicThreshold: 0.7,  // Adjust the threshold as needed
+                    googleSearch: {  // Changed googleSearchRetrieval to googleSearch
+                        // dynamicRetrievalConfig is no longer needed or supported based on the error
                     },
-                  },
                 },
               ],
          });
