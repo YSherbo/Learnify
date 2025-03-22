@@ -43,8 +43,11 @@ finally, make sure it consists of 13 steps max and 5 steps minimum and again NO 
 
         const data = await AI.run3(AI_Request);
         const lines = data.split("\n");
-        Videos = lines.filter((_, index) => index % 2 === 0); // Video names
-        Channels = lines.filter((_, index) => index % 2 !== 0); // Channel names
+        const cleanedLines = lines.filter(line => line.trim() !== "");
+        Videos = cleanedLines.filter((_, index) => index % 2 === 0); // Video names
+        console.log(Videos)
+        Channels = cleanedLines.filter((_, index) => index % 2 !== 0); // Channel names
+        console.log(Channels)
     } catch (error) {
         console.error("Error fetching data from AI:", error);
         throw error;
