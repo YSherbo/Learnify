@@ -43,10 +43,10 @@ Channel Name(The Name Of The Channel,  make sure that the channel exists with th
 
 ...etc
 
-make sure you do it with the same layout(10 Videos Minimum - 15 Video Max) (No Context(no heres... or anything else) get straight to the videos and dont add it in a numbered list or bullet points and (dont do it like this(for example)VideoTitle: Penetration Testing Full Course 2025
+make sure you do it with the same layout(10 Videos Minimum - 15 Video Max) (No Context(no heres a structured course... or Okay, here's a roadmap for learning or anything else) just get straight to the videos with no context at all and dont add it in a numbered list or bullet points and (dont do it like this(for example)VideoTitle: Penetration Testing Full Course 2025
 Channel Name: Simplilearn
 
-do it like this: 
+do it like this:
 
 Penetration Testing Full Course 2025
 Simplilearn) also make sure its like a roadmap, (like for example when i want to learn penetration testing, dont give me multiple penetration testing full course videos, give me a python tutorial first, then networking seccond, then nmap, than the stages of hacking etc etc)`;
