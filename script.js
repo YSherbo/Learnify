@@ -49,7 +49,7 @@ Channel Name: Simplilearn
 do it like this:
 
 Penetration Testing Full Course 2025
-Simplilearn) also make sure its like a roadmap, (like for example when i want to learn penetration testing, dont give me multiple penetration testing full course videos, give me a python tutorial first, then networking seccond, then nmap, than the stages of hacking etc etc)`;
+Simplilearn) also make sure its like a roadmap, (like for example when i want to learn penetration testing, dont give me multiple penetration testing full course videos, give me a python full tutorial first, then networking full course seccond, then nmap full course, than the stages of hacking etc etc make sure these are still longform, complete, full part course not a part one or short dont include those)`;
 
         const data = await AI.run3(AI_Request);
         const lines = data.split("\n");
