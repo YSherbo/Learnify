@@ -32,4 +32,29 @@ async function run2(question) {
     }
 }
 
-module.exports = { run, run2 };
+
+async function run3(question) {
+    try {
+        const model = genAI.getGenerativeModel({ 
+            model: "gemini-2.0-flash", 
+            tools: [
+                {
+                  googleSearchRetrieval: {
+                    dynamicRetrievalConfig: {
+                      mode: DynamicRetrievalMode.MODE_DYNAMIC,
+                      dynamicThreshold: 0.7,
+                    },
+                  },
+                },
+              ],
+         });
+        const result = await model.generateContent(question);
+        const response = await result.response;
+        return response.text();
+    } catch (error) {
+        console.error("Error in AI API call:", error);
+        throw error;
+    }
+}
+
+module.exports = { run, run2, run3 };
