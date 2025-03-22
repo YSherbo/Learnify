@@ -41,8 +41,8 @@ async function run3(question) {
                 {
                   googleSearchRetrieval: {
                     dynamicRetrievalConfig: {
-                      mode: DynamicRetrievalMode.MODE_DYNAMIC,
-                      dynamicThreshold: 0.7,
+                      mode: 'MODE_DYNAMIC',  // Or try 'DISABLED' for no dynamic retrieval
+                      dynamicThreshold: 0.7,  // Adjust the threshold as needed
                     },
                   },
                 },
