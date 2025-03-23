@@ -43,7 +43,7 @@ Channel Name(The Name Of The Channel,  make sure that the channel exists with th
 
 ...etc
 
-make sure you do it with the same layout(10 Videos Minimum - 15 Video Max) (No Context(no heres a structured course... or Okay, here's a roadmap for learning or anything else) just get straight to the videos with no context at all and dont add it in a numbered list or bullet points and (dont do it like this(for example)VideoTitle: Penetration Testing Full Course 2025
+make sure you do it with the same layout(10 Videos Minimum - 15 Video Max) (No Context(no heres a structured course... or Okay, here's a roadmap for learning or Okay, I will create a list of YouTube videos... or anything else, i want NO CONTEXT AT ALL, just get straight to the videos) just get straight to the videos with no context at all and dont add it in a numbered list or bullet points and (dont do it like this(for example)VideoTitle: Penetration Testing Full Course 2025
 Channel Name: Simplilearn
 
 do it like this:
