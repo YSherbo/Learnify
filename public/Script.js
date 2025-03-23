@@ -238,112 +238,15 @@ async function switchPages(i) {
     if (EXPList[i] !== undefined) {
         const explaination = document.createElement('div');
         explaination.innerHTML = EXPList[i];
-        const data = JSON.stringify({
-            format: 'ogg',
-            data: [
-                {
-                    type: 'text',
-                    lang: 'en',
-                    speaker: 'Elias',
-                    data: [
-                        {
-                            text: 'The tokamak is an experimental machine designed to harness the energy of fusion. Inside a tokamak, the energy produced through the fusion of atoms is absorbed as heat in the walls of the vessel.',
-                            emotion: [9],
-                            pauseAfter: 300,
-                            pauseBefore: 300
-                        }
-                    ]
-                }
-            ]
-        });
-        
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-        
-        xhr.addEventListener('readystatechange', function () {
-            if (this.readyState === this.DONE) {
-                console.log('Audio URL:', this.responseText);
-                const response = JSON.parse(this.responseText);
-                if (response.audio_url) {
-                    const audio = new Audio(response.audio_url);
-                    document.getElementById('playButton').addEventListener('click', function () {
-                        audio.play();
-                    });
-                }
-            }
-        });
-        
-        xhr.open('POST', 'https://emotional-text-to-speech.p.rapidapi.com/synth');
-        xhr.setRequestHeader('x-rapidapi-key', 'ccbfbe60a8msh4b39ce500faac88p1eea80jsn84b18dd8f9a4');
-        xhr.setRequestHeader('x-rapidapi-host', 'emotional-text-to-speech.p.rapidapi.com');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        
-        xhr.send(data);
-        
-        // Create a button and append it to the document
-        const button = document.createElement('button');
-        button.id = 'playButton';
-        button.innerText = 'Play Audio';
-        div.appendChild(button);
         div.appendChild(explaination);
-
         generatingText.remove();
-
     } else {
         await sendNum();
         const Explaination = await getExplaination();
         const explaination = document.createElement('div');
         explaination.innerHTML = Explaination;
-        EXPList[i] = Explaination;
-
-        const data = JSON.stringify({
-            format: 'ogg',
-            data: [
-                {
-                    type: 'text',
-                    lang: 'en',
-                    speaker: 'Elias',
-                    data: [
-                        {
-                            text: 'The tokamak is an experimental machine designed to harness the energy of fusion. Inside a tokamak, the energy produced through the fusion of atoms is absorbed as heat in the walls of the vessel.',
-                            emotion: [9],
-                            pauseAfter: 300,
-                            pauseBefore: 300
-                        }
-                    ]
-                }
-            ]
-        });
-        
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-        
-        xhr.addEventListener('readystatechange', function () {
-            if (this.readyState === this.DONE) {
-                console.log('Audio URL:', this.responseText);
-                const response = JSON.parse(this.responseText);
-                if (response.audio_url) {
-                    const audio = new Audio(response.audio_url);
-                    document.getElementById('playButton').addEventListener('click', function () {
-                        audio.play();
-                    });
-                }
-            }
-        });
-        
-        xhr.open('POST', 'https://emotional-text-to-speech.p.rapidapi.com/synth');
-        xhr.setRequestHeader('x-rapidapi-key', 'ccbfbe60a8msh4b39ce500faac88p1eea80jsn84b18dd8f9a4');
-        xhr.setRequestHeader('x-rapidapi-host', 'emotional-text-to-speech.p.rapidapi.com');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        
-        xhr.send(data);
-        
-        // Create a button and append it to the document
-        const button = document.createElement('button');
-        button.id = 'playButton';
-        button.innerText = 'Play Audio';
-        div.appendChild(button);
         div.appendChild(explaination);
+        EXPList[i] = Explaination;
         generatingText.remove();
     }
 
