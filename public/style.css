@@ -235,7 +235,6 @@ h2 {
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.61);
     backdrop-filter: blur(15px);
-    border-radius: 20px;
     box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
 }
 
@@ -269,7 +268,6 @@ h2 {
 
 
 .card3 .sidenav {
-	height: 100%; /* Full-height: remove this if you want "auto" height */
   	width: 160px; /* Set the width of the sidebar */
   	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   	z-index: 1; /* Stay on top */
@@ -278,6 +276,9 @@ h2 {
   	background-color: #011640;
   	overflow-x: hidden; /* Disable horizontal scroll */
   	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 20px;
+
 }
 
 .card3 .sidenav a {
