@@ -61,14 +61,14 @@ function closeMenu() {
 }
 
 const URLs = [
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/info',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/Question',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/results',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/answers',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/Exp',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/GetNum',
-    'https://original-aloisia-catalyst-studios-88870e41.koyeb.app/GetNumDiff'
+    'https://learnify.koyeb.app/info',
+    'https://learnify.koyeb.app/',
+    'https://learnify.koyeb.app/Question',
+    'https://learnify.koyeb.app/results',
+    'https://learnify.koyeb.app/answers',
+    'https://learnify.koyeb.app/Exp',
+    'https://learnify.koyeb.app/GetNum',
+    'https://learnify.koyeb.app/GetNumDiff'
 ];
 
 const input = document.getElementById('User_Input');
