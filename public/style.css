@@ -47,6 +47,7 @@ body {
 	line-height: 1.6;
 	margin: 0;
 	min-height: 100vh;
+	background-color: #011640;
 }
 ul {
   margin: 0;
@@ -144,6 +145,57 @@ input[type=text] {
 	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
 	background-color: #011640;
 }
+
+.Account {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.Account input[type=email] {
+	border-radius: 15px;
+	border: white;
+	font-family: bold;
+	font-size: 1.5vw;
+	color: white;
+	padding: 15px 40px;
+	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+	background-color: #011640;
+}
+
+.Account button {
+	border-radius: 15px;
+	border: #00000000;
+	font-family: bold;
+	padding: 15px, 40px;
+	font-size: 1.5vw;
+	box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+	background-color: #011640;
+	color: white;
+	transition: 250ms;
+}
+.Account button:hover {
+	transform: scale(1.1);
+	background-color: white;
+	color: #011640;
+}
+
+.Account .Google {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px; /* space between logo and text */
+}
+.Account .bigText {
+	font-size: 4vw;
+}
+
+.Account .Google img {
+	width: 24px; /* consistent size */
+	height: auto;
+}
+
 
 .code textarea {
 	border-radius: 50px;
@@ -323,10 +375,6 @@ img {
 	border-radius: 20px;
 }
 
-body {
-	background-color: black;
-}
-
 #loading {
 	position: fixed;
 	width: 100%;
@@ -459,6 +507,48 @@ iframe {
   .dropdown:hover .dropdown-content {display: block;}
   
 @media only screen and (max-width: 768px) {
+
+	.Account {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	
+	.Account input[type=email] {
+		border-radius: 15px;
+		border: white;
+		font-family: bold;
+		font-size: 4vw;
+		color: white;
+		padding: 15px 40px;
+		box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+		background-color: #011640;
+	}
+	
+	.Account button {
+		border-radius: 15px;
+		border: white;
+		font-family: bold;
+		padding: 15px;
+		font-size: 4vw;
+		box-shadow: 15px 7px 15px 3px rgba(0,0,0,.8);
+		background-color: #011640;
+		color: white;
+		transition: 250ms; 
+	}
+
+	.Account button:hover {
+		transform: scale(1.1);
+		background-color: white;
+		color: #011640;
+	}
+
+	.Account .bigText {
+		font-size: 8vw;
+	}	
+
+		
     .main-nav {
         position: fixed;
         left: -100%;
