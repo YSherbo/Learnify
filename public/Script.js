@@ -157,9 +157,24 @@ async function sendNumDiff() {
 async function getVideos() {
     try {
         div.innerHTML = "";
-        const generatingText = document.createElement('h1');
-        generatingText.className = "bigText";
-        generatingText.innerHTML = "Generating Your Course...";
+        const generatingText = document.createElement('div');
+        generatingText.className = 'loader2';
+
+        const intern = document.createElement('div');
+        intern.className = 'intern';
+
+        const externalShadow = document.createElement('div');
+        externalShadow.className = 'external-shadow';
+
+        const central = document.createElement('div');
+        central.className = 'central';
+
+        // Assemble structure
+        externalShadow.appendChild(central);
+        generatingText.appendChild(intern);
+        generatingText.appendChild(externalShadow);
+
+        // Append to body or another container
         div.appendChild(generatingText);
 
         const res = await fetch(URLs[0], { method: "GET" });
@@ -231,8 +246,24 @@ async function switchPages(i) {
     const br2 = document.createElement('br');
     div.appendChild(br2);
 
-    const generatingText = document.createElement('h1');
-    generatingText.innerHTML = "Generating AI Explanation...";
+    const generatingText = document.createElement('div');
+    generatingText.className = 'loader2';
+
+    const intern = document.createElement('div');
+    intern.className = 'intern';
+
+    const externalShadow = document.createElement('div');
+    externalShadow.className = 'external-shadow';
+
+    const central = document.createElement('div');
+    central.className = 'central';
+
+    // Assemble structure
+    externalShadow.appendChild(central);
+    generatingText.appendChild(intern);
+    generatingText.appendChild(externalShadow);
+
+    // Append to body or another container
     div.appendChild(generatingText);
 
     if (EXPList[i] !== undefined) {
