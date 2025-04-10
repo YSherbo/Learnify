@@ -359,6 +359,14 @@ h2 {
 	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);  
 }
 
+.card2 p, h2, li {
+	text-align: left;
+}
+
+.card2 h2 {
+	text-align: center;
+}
+
 .card3 {
     width: 100%;
     min-height: 100vh; /* Ensures it takes full screen height */
