@@ -1,5 +1,5 @@
 (function ($) {
-    $(window).on('load', function () {
+    $(window).on("load", function () {
         setTimeout(removeLoader, 2000);
     });
 
@@ -23,29 +23,29 @@ function mobileMenu() {
 }
 
 function auto_height(elem) {
-    elem.style.height = '1px';
+    elem.style.height = "1px";
     elem.style.height = `${elem.scrollHeight}px`;
 }
 
 function sidenavopen() {
     try {
-        const btn = document.getElementById('closebtn');
+        const btn = document.getElementById("closebtn");
         btn.remove();
     } catch (error) {
         console.log("No close button found");
     }
-    CourseList.style.display = 'block';
-    const close = document.createElement('a');
-    close.innerHTML = 'Close';
+    CourseList.style.display = "block";
+    const close = document.createElement("a");
+    close.innerHTML = "Close";
     close.id = "closebtn";
-    close.addEventListener('click', sidenavclose);
+    close.addEventListener("click", sidenavclose);
     CourseList.appendChild(close);
 }
 
 function sidenavclose() {
-    CourseList.style.display = 'none';
-    const close = document.getElementById('closebtn');
-    close.removeEventListener('click', sidenavclose);
+    CourseList.style.display = "none";
+    const close = document.getElementById("closebtn");
+    close.removeEventListener("click", sidenavclose);
     CourseList.removeChild(close);
 }
 
@@ -61,20 +61,20 @@ function closeMenu() {
 }
 
 const URLs = [
-    'https://learnify.koyeb.app/info',
-    'https://learnify.koyeb.app/',
-    'https://learnify.koyeb.app/Question',
-    'https://learnify.koyeb.app/results',
-    'https://learnify.koyeb.app/answers',
-    'https://learnify.koyeb.app/Exp',
-    'https://learnify.koyeb.app/GetNum',
-    'https://learnify.koyeb.app/GetNumDiff'
+    "https://learnify.koyeb.app/info",
+    "https://learnify.koyeb.app/",
+    "https://learnify.koyeb.app/Question",
+    "https://learnify.koyeb.app/results",
+    "https://learnify.koyeb.app/answers",
+    "https://learnify.koyeb.app/Exp",
+    "https://learnify.koyeb.app/GetNum",
+    "https://learnify.koyeb.app/GetNumDiff",
 ];
 
-const input = document.getElementById('User_Input');
-const div = document.getElementById('results');
-const Lessons = document.getElementById('Lessons');
-const GenerateButton = document.getElementById('Generate');
+const input = document.getElementById("User_Input");
+const div = document.getElementById("results");
+const Lessons = document.getElementById("Lessons");
+const GenerateButton = document.getElementById("Generate");
 const EXPList = [];
 let Videos = [];
 let pageno = 0;
@@ -88,7 +88,7 @@ const answers = [];
 const QuestionType = [];
 const User_Response = [];
 
-GenerateButton.addEventListener('click', async function (event) {
+GenerateButton.addEventListener("click", async function (event) {
     event.preventDefault();
     console.log("Generate button clicked");
     await sendInput();
@@ -103,11 +103,11 @@ async function sendInput() {
     console.log("Sending input to server:", input.value);
     try {
         const response = await fetch(URLs[1], {
-            method: 'POST',
+            method: "POST",
             headers: {
-                "Content-Type": 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ parcel: input.value })
+            body: JSON.stringify({ parcel: input.value }),
         });
         if (!response.ok) {
             throw new Error(`Server responded with status: ${response.status}`);
@@ -121,11 +121,11 @@ async function sendInput() {
 async function sendNum() {
     try {
         const response = await fetch(URLs[6], {
-            method: 'POST',
+            method: "POST",
             headers: {
-                "Content-Type": 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ parcel: pageno })
+            body: JSON.stringify({ parcel: pageno }),
         });
         if (!response.ok) {
             throw new Error(`Server responded with status: ${response.status}`);
@@ -139,11 +139,11 @@ async function sendNum() {
 async function sendNumDiff() {
     try {
         const response = await fetch(URLs[7], {
-            method: 'POST',
+            method: "POST",
             headers: {
-                "Content-Type": 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ parcel: pageno, diff: Diffiulty })
+            body: JSON.stringify({ parcel: pageno, diff: Diffiulty }),
         });
         if (!response.ok) {
             throw new Error(`Server responded with status: ${response.status}`);
@@ -157,17 +157,17 @@ async function sendNumDiff() {
 async function getVideos() {
     try {
         div.innerHTML = "";
-        const generatingText = document.createElement('div');
-        generatingText.className = 'loader2';
+        const generatingText = document.createElement("div");
+        generatingText.className = "loader2";
 
-        const intern = document.createElement('div');
-        intern.className = 'intern';
+        const intern = document.createElement("div");
+        intern.className = "intern";
 
-        const externalShadow = document.createElement('div');
-        externalShadow.className = 'external-shadow';
+        const externalShadow = document.createElement("div");
+        externalShadow.className = "external-shadow";
 
-        const central = document.createElement('div');
-        central.className = 'central';
+        const central = document.createElement("div");
+        central.className = "central";
 
         // Assemble structure
         externalShadow.appendChild(central);
@@ -187,10 +187,10 @@ async function getVideos() {
         Lessons.innerHTML = "";
         const fragment = document.createDocumentFragment();
         for (let i = 0; i < Videos.length; i++) {
-            const lesson = document.createElement('a');
+            const lesson = document.createElement("a");
             lesson.innerHTML = "Lesson " + (i + 1);
             lesson.href = "#";
-            lesson.addEventListener('click', async function (event) {
+            lesson.addEventListener("click", async function (event) {
                 event.preventDefault();
                 await switchPages(i);
             });
@@ -206,7 +206,7 @@ async function getVideos() {
 
 async function getExplaination() {
     try {
-        const res = await fetch(URLs[5], { method: 'GET' });
+        const res = await fetch(URLs[5], { method: "GET" });
         const data = await res.json();
         return data.EXP;
     } catch (error) {
@@ -219,44 +219,44 @@ async function switchPages(i) {
     div.innerHTML = "";
     pageno = i;
 
-    const title = document.createElement('h1');
+    const title = document.createElement("h1");
     title.className = "bigText";
     title.innerHTML = "Lesson " + (i + 1);
     div.appendChild(title);
 
-    const br = document.createElement('br');
+    const br = document.createElement("br");
     div.appendChild(br);
 
-    const container = document.createElement('div');
-    container.className = 'video-container';
+    const container = document.createElement("div");
+    container.className = "video-container";
 
-    const video = document.createElement('iframe');
-    video.src = 'https://www.youtube.com/embed/' + Videos[i];
-    video.width = '560';
-    video.height = '315';
-    video.title = 'YouTube video player';
+    const video = document.createElement("iframe");
+    video.src = "https://www.youtube.com/embed/" + Videos[i];
+    video.width = "560";
+    video.height = "315";
+    video.title = "YouTube video player";
     video.frameBorder = 0;
-    video.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    video.referrerPolicy = 'strict-origin-when-cross-origin';
+    video.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    video.referrerPolicy = "strict-origin-when-cross-origin";
     video.allowFullscreen = true;
 
     container.appendChild(video);
     div.appendChild(container);
 
-    const br2 = document.createElement('br');
+    const br2 = document.createElement("br");
     div.appendChild(br2);
 
-    const generatingText = document.createElement('div');
-    generatingText.className = 'loader2';
+    const generatingText = document.createElement("div");
+    generatingText.className = "loader2";
 
-    const intern = document.createElement('div');
-    intern.className = 'intern';
+    const intern = document.createElement("div");
+    intern.className = "intern";
 
-    const externalShadow = document.createElement('div');
-    externalShadow.className = 'external-shadow';
+    const externalShadow = document.createElement("div");
+    externalShadow.className = "external-shadow";
 
-    const central = document.createElement('div');
-    central.className = 'central';
+    const central = document.createElement("div");
+    central.className = "central";
 
     // Assemble structure
     externalShadow.appendChild(central);
@@ -267,34 +267,34 @@ async function switchPages(i) {
     div.appendChild(generatingText);
 
     if (EXPList[i] !== undefined) {
-        const explaination = document.createElement('div');
+        const explaination = document.createElement("div");
         explaination.innerHTML = EXPList[i];
         div.appendChild(explaination);
         generatingText.remove();
     } else {
         await sendNum();
         const Explaination = await getExplaination();
-        const explaination = document.createElement('div');
+        const explaination = document.createElement("div");
         explaination.innerHTML = Explaination;
         div.appendChild(explaination);
         EXPList[i] = Explaination;
         generatingText.remove();
     }
 
-    const QuizBTN = document.createElement('div');
-    QuizBTN.className = 'dropdown';
-    const QuizButton = document.createElement('button');
-    QuizButton.className = 'dropbtn';
-    QuizButton.innerHTML = 'Take A Quiz';
-    const QuizContent = document.createElement('div');
-    QuizContent.className = 'dropdown-content';
+    const QuizBTN = document.createElement("div");
+    QuizBTN.className = "dropdown";
+    const QuizButton = document.createElement("button");
+    QuizButton.className = "dropbtn";
+    QuizButton.innerHTML = "Take A Quiz";
+    const QuizContent = document.createElement("div");
+    QuizContent.className = "dropdown-content";
 
     const difficulties = ["Easy", "Medium", "Hard"];
     difficulties.forEach((difficulty, index) => {
-        const QuizButton = document.createElement('a');
+        const QuizButton = document.createElement("a");
         QuizButton.innerHTML = difficulty;
-        QuizButton.href = '#';
-        QuizButton.addEventListener('click', async function (event) {
+        QuizButton.href = "#";
+        QuizButton.addEventListener("click", async function (event) {
             event.preventDefault();
             Diffiulty = index + 1;
             await sendNumDiff();
@@ -361,23 +361,23 @@ async function OpenQuiz() {
 async function SwitchQuestions(i) {
     div.innerHTML = "";
 
-    const title = document.createElement('h1');
+    const title = document.createElement("h1");
     title.innerHTML = "Question " + (i + 1);
     div.appendChild(title);
 
-    const br2 = document.createElement('br');
+    const br2 = document.createElement("br");
     div.appendChild(br2);
 
-    const QuestionHTML = document.createElement('h1');
+    const QuestionHTML = document.createElement("h1");
     QuestionHTML.innerHTML = Questions[i];
     div.appendChild(QuestionHTML);
 
     if (QuestionType[i] === "MultipleChoice") {
         const choices = [Choice1[i], Choice2[i], Choice3[i], Choice4[i]];
         choices.forEach((choice, index) => {
-            const choiceButton = document.createElement('button');
+            const choiceButton = document.createElement("button");
             choiceButton.innerHTML = choice;
-            choiceButton.addEventListener('click', async function () {
+            choiceButton.addEventListener("click", async function () {
                 User_Response[i] = choice;
                 await checkAnswer(choice, answers[i]);
                 if (i === Questions.length - 1) {
@@ -390,34 +390,34 @@ async function SwitchQuestions(i) {
             div.appendChild(choiceButton);
         });
     } else if (QuestionType[i] === "Code") {
-        const CodeContainer = document.createElement('div');
-        CodeContainer.className = 'code';
+        const CodeContainer = document.createElement("div");
+        CodeContainer.className = "code";
 
-        const CodeInput = document.createElement('textarea');
+        const CodeInput = document.createElement("textarea");
         CodeInput.oninput = "auto_height(this)";
         CodeInput.placeholder = "Enter your code here";
         CodeInput.rows = 1;
-        CodeInput.className = 'auto_height';
+        CodeInput.className = "auto_height";
 
         CodeContainer.appendChild(CodeInput);
         div.appendChild(CodeContainer);
 
-        const br = document.createElement('br');
+        const br = document.createElement("br");
         div.appendChild(br);
 
         if (i === Questions.length - 1) {
-            const SubmitBTN = document.createElement('button');
-            SubmitBTN.innerHTML = 'Submit';
-            SubmitBTN.addEventListener('click', async function () {
+            const SubmitBTN = document.createElement("button");
+            SubmitBTN.innerHTML = "Submit";
+            SubmitBTN.addEventListener("click", async function () {
                 User_Response[i] = CodeInput.value;
                 await sendResults();
                 await getResults();
             });
             div.appendChild(SubmitBTN);
         } else {
-            const NextBTN = document.createElement('button');
-            NextBTN.innerHTML = 'Next';
-            NextBTN.addEventListener('click', async function () {
+            const NextBTN = document.createElement("button");
+            NextBTN.innerHTML = "Next";
+            NextBTN.addEventListener("click", async function () {
                 User_Response[i] = CodeInput.value;
                 await SwitchQuestions(i + 1);
             });
@@ -425,38 +425,38 @@ async function SwitchQuestions(i) {
         }
 
         if (i > 0) {
-            const PrevBTN = document.createElement('button');
-            PrevBTN.innerHTML = 'Previous';
-            PrevBTN.addEventListener('click', async function () {
+            const PrevBTN = document.createElement("button");
+            PrevBTN.innerHTML = "Previous";
+            PrevBTN.addEventListener("click", async function () {
                 User_Response[i] = CodeInput.value;
                 await SwitchQuestions(i - 1);
             });
             div.appendChild(PrevBTN);
         }
     } else {
-        const AnswerHTML = document.createElement('textarea');
+        const AnswerHTML = document.createElement("textarea");
         AnswerHTML.placeholder = "Enter your answer here";
         AnswerHTML.rows = 1;
-        AnswerHTML.className = 'auto_height';
+        AnswerHTML.className = "auto_height";
         AnswerHTML.oninput = "auto_height(this)";
         div.appendChild(AnswerHTML);
 
-        const br = document.createElement('br');
+        const br = document.createElement("br");
         div.appendChild(br);
 
         if (i === Questions.length - 1) {
-            const SubmitBTN = document.createElement('button');
-            SubmitBTN.innerHTML = 'Submit';
-            SubmitBTN.addEventListener('click', async function () {
+            const SubmitBTN = document.createElement("button");
+            SubmitBTN.innerHTML = "Submit";
+            SubmitBTN.addEventListener("click", async function () {
                 User_Response[i] = AnswerHTML.value;
                 await sendResults();
                 await getResults();
             });
             div.appendChild(SubmitBTN);
         } else {
-            const NextBTN = document.createElement('button');
-            NextBTN.innerHTML = 'Next';
-            NextBTN.addEventListener('click', async function () {
+            const NextBTN = document.createElement("button");
+            NextBTN.innerHTML = "Next";
+            NextBTN.addEventListener("click", async function () {
                 User_Response[i] = AnswerHTML.value;
                 await SwitchQuestions(i + 1);
             });
@@ -464,9 +464,9 @@ async function SwitchQuestions(i) {
         }
 
         if (i > 0) {
-            const PrevBTN = document.createElement('button');
-            PrevBTN.innerHTML = 'Previous';
-            PrevBTN.addEventListener('click', async function () {
+            const PrevBTN = document.createElement("button");
+            PrevBTN.innerHTML = "Previous";
+            PrevBTN.addEventListener("click", async function () {
                 User_Response[i] = AnswerHTML.value;
                 await SwitchQuestions(i - 1);
             });
@@ -486,11 +486,11 @@ async function checkAnswer(Choice, Answer) {
 async function sendResults() {
     try {
         const response = await fetch(URLs[3], {
-            method: 'POST',
+            method: "POST",
             headers: {
-                "Content-Type": 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ parcel: User_Response })
+            body: JSON.stringify({ parcel: User_Response }),
         });
         if (!response.ok) {
             throw new Error(`Server responded with status: ${response.status}`);
@@ -513,7 +513,7 @@ async function getResults() {
         div.innerHTML = "";
 
         data.forEach((result, index) => {
-            const resultElement = document.createElement('h1');
+            const resultElement = document.createElement("h1");
             resultElement.innerHTML = "Question " + (index + 1) + ": " + result;
             div.appendChild(resultElement);
         });

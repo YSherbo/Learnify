@@ -1,119 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <title>Learnify</title>
-        <meta 
-            name="Description"
-            content="Know how to learn anyting about tech with free resources and less effort">
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="Files/icon.png">
-        <link rel="apple-touch-icon" sizes="1024x1024" href="Files/IOS-icon.jpg">
-        <link rel="manifest" href="manifest.json">
+        <meta name="Description" content="Know how to learn anyting about tech with free resources and less effort" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Files/icon.png" />
+        <link rel="apple-touch-icon" sizes="1024x1024" href="Files/IOS-icon.jpg" />
+        <link rel="manifest" href="manifest.json" />
         <meta name="viewport" content="user-scalable=no,width=device-width" />
-
-
 
         <script></script>
     </head>
     <body>
         <div id="loading">
             <img id="loading-image" src="Files/logo.png" width="15%" alt="Loading..." />
-          </div>
+        </div>
 
         <div class="header">
-                <img 
-                src="Files/logo.png" 
-                alt="Logo image"
-                class="logo"
-                width="5%">
+            <img src="Files/logo.png" alt="Logo image" class="logo" width="5%" />
             <!-- This is the logo image -->
-                <ul class="main-nav">
-                    <li>
-                        <a 
-                            class="Home" 
-                            title="Home" 
-                            href="index.html">
-                        Home
-                        </a>
-                    </li>
+            <ul class="main-nav">
+                <li>
+                    <a class="Home" title="Home" href="index.html"> Home </a>
+                </li>
 
-                    <li>
-                        <a 
-                            class="Courses" 
-                            title="Courses" 
-                            href="Courses.html">
-                        Courses
-                        </a>
-                    </li>
+                <li>
+                    <a class="Courses" title="Courses" href="Courses.html"> Courses </a>
+                </li>
 
-                      <li>
-                        <a 
-                            class="About" 
-                            title="About us" 
-                            href="About us.html">
-                        About us
-                        </a>
-                    </li>
+                <li>
+                    <a class="About" title="About us" href="About us.html"> About us </a>
+                </li>
+            </ul>
 
-                    <a 
-                    class="About" 
-                    title="About us" 
-                    href="Account.html">
-                Account
-                </a>
-            </li>
-
-                </ul>
-
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
 
         <center>
-            <img class="background-image" src="./Files/Background.jpg">
+            <div class="animated-bg"></div>
         </center>
 
+        <div class="card3">
+            <div class="sidenav" id="Lessons">
+                <a href="#">New Course</a>
+            </div>
+            <button class="CoursesBTN" id="CoursesBTN">...</button>
+            <!-- Page content -->
+            <div class="main" id="results">
+                <center>
+                    <h1>Generate a New Course</h1>
+                    <form id="generateForm">
+                        <input type="text" id="User_Input" placeholder="Type What You Want To Learn" />
+                        <button id="Generate">Get Course</button>
+                    </form>
+                    <br />
+                    <p>
+                        Learnify is an AI-powered app designed to make learning more efficient and effective. It offers
+                        a comprehensive suite of features to cater to your unique learning style:<br /><br />
 
+                        • Course Generation: Based on your interests and learning goals, Learnify can generate
+                        customized courses tailored to your needs.<br />
+                        • Video Discovery: It scours the internet to find the best course videos from reputable sources,
+                        ensuring you receive high-quality content.<br />
+                        • Transcription: Learnify automatically transcribes the videos, making it easy to follow along
+                        and review key points.<br />
+                        • Text-Based Explanation: It provides a clear and concise text-based explanation of the course
+                        material, reinforcing your understanding.<br />
+                        • Skill Evaluation: To assess your progress, Learnify generates practice quizzes and evaluations
+                        to test your knowledge and identify areas where you may need further study.<br /><br />
 
-                <div class="card3">
-                    <div class="sidenav" id="Lessons">
-                        <a href="#">New Course</a>
-                    </div>
-                    <button class="CoursesBTN" id="CoursesBTN">
-                        ...
-                    </button>
-                        <!-- Page content -->
-                        <div class="main" id="results">
-                            <center>
-                            <h1>Generate a New Course</h1>
-                            <form id="generateForm">
-                                <input type="text" id="User_Input"  placeholder="Type What You Want To Learn"/>
-                                <button id="Generate">Get Course</button>
-                            </form><br>
-                            <p>Learnify is an AI-powered app designed to make learning more efficient and effective. It offers a comprehensive suite of features to cater to your unique learning style:<br><br>
-                
-                                • Course Generation: Based on your interests and learning goals, Learnify can generate customized courses tailored to your needs.<br>
-                                • Video Discovery: It scours the internet to find the best course videos from reputable sources, ensuring you receive high-quality content.<br>
-                                • Transcription: Learnify automatically transcribes the videos, making it easy to follow along and review key points.<br>
-                                • Text-Based Explanation: It provides a clear and concise text-based explanation of the course material, reinforcing your understanding.<br>
-                                • Skill Evaluation: To assess your progress, Learnify generates practice quizzes and evaluations to test your knowledge and identify areas where you may need further study.<br><br>
-                                
-                                With Learnify, you can take control of your learning journey, discover new topics, and develop valuable skills at your own pace.
-                            </p>
-                        </center>
-                        </div>  
-                </div>
+                        With Learnify, you can take control of your learning journey, discover new topics, and develop
+                        valuable skills at your own pace.
+                    </p>
+                </center>
+            </div>
+        </div>
 
-
-
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>            
-            <script src="Script.js">    
-            </script>
-    
-
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+        ></script>
+        <script src="Script.js"></script>
     </body>
 </html>
